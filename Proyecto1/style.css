@@ -1,0 +1,47 @@
+/*importe la fuente desde Google Fonts*/
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+
+/* Formateamos toda la página con el CSS para encuadrar todo dentro de la pag */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    list-style: none;
+}
+
+
+/* Establezco color de fondo de todo el BODY y asignamos la fuente con la que vamos a trabajar */
+body {
+    background-color: #000202;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Estilos para el contenedor principal */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Estilos para el botón de navegación anterior del Swiper */
+.swiper-button-prev::after {
+    font-size: 25px;
+}
+
+/* Estilos para el botón de navegación siguiente del Swiper */
+.swiper-button-next::after{
+    font-size: 25px;
+}
+.swiper-button-next {
+    color: #DB241B;
+}
+.swiper-button-prev {
+    color: #DB241B;
+}
+.swiper-pagination-bullet {
+    background-color: #D3D2D2 ;
+    opacity: 1;
+}
+.swiper-pagination-bullet-active {
+    background-color: #DB241B ;
+}
