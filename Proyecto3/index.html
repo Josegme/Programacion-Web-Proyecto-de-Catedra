@@ -10,82 +10,170 @@
   <body>
     <!--Header y barra de navegación-->
     <header>
-      <h1>Developer Capibara</h1>
-      <nav>
-        <ul>
-          <li><a href="#hero">Inicio</a></li>
-          <li><a href="#about">Sobre mi</a></li>
-          <li><a href="#services">Servicios</a></li>
-          <li><a href="#contact">¿Quieres saber más?</a></li>
-        </ul>
-      </nav>
+      <div class="container">
+        <div class="logo-container">
+          <img
+            src="images/capi3.png"
+            alt="Logo de Developer Capibara"
+            class="header-logo"
+          />
+          <h1>Developer Capibara</h1>
+        </div>
+        <nav class="main-nav">
+          <ul class="nav-list">
+            <li><a href="#hero">Inicio</a></li>
+            <li><a href="#about">Sobre mi</a></li>
+            <li><a href="#services">Servicios</a></li>
+            <li><a href="#contact">¿Quieres saber más?</a></li>
+          </ul>
+        </nav>
+      </div>
     </header>
     <!--Contenido del Home: 5 secciones-->
     <main>
       <section id="hero" class="hero">
-        <h2>Bienvenido a mi sitio web</h2>
-        <p>Desarrollador web y entusiasta de la tecnología</p>
-        <button>Contactame</button>
+        <div class="container">
+          <h2>Bienvenido a mi sitio web</h2>
+          <p>Desarrollador web y entusiasta de la tecnología</p>
+          <button class="btn btn-primary">Contactame</button>
+        </div>
       </section>
       <!--Sección 1: sobre mi-->
       <section id="about" class="about">
-        <h2>Sobre mi</h2>
-        <p>
-          Soy un desarrollador web con experiencia en HTML, CSS, JavaScript y
-          frameworks modernos. Me apasiona crear sitios web atractivos y
-          funcionales.
-        </p>
+        <video autoplay loop muted class="about-bg-video">
+          <source src="videos/matrix2.mp4" type="video/mp4" />
+          Tu navegador no soporta videos de fondo.
+        </video>
+        <div class="container">
+          <h2>Sobre mi</h2>
+          <div class="about-layout">
+            <div class="about-text">
+              <p>
+                Soy un desarrollador web con experiencia en HTML, CSS,
+                JavaScript y frameworks modernos. Me apasiona crear sitios web
+                atractivos y funcionales que ofrezcan una experiencia de usuario
+                excepcional. Como un capibara en su hábitat natural, me muevo
+                con calma pero con determinación en el ecosistema digital,
+                siempre aprendiendo nuevas tecnologías y buscando soluciones
+                creativas a problemas complejos. Mi objetivo es construir
+                productos digitales que no solo se vean bien, sino que también
+                sean intuitivos, accesibles y eficientes.
+              </p>
+            </div>
+            <div class="about-image">
+              <img
+                src="images/capi2.png"
+                alt="Un capibara relajado con un portátil"
+              />
+            </div>
+          </div>
+        </div>
       </section>
       <!--Sección 2: servicios-->
       <section id="services" class="services">
-        <h2>Servicios</h2>
-        <ul>
-          <li>Desarrollo de sitios web</li>
-          <li>Diseño responsivo</li>
-          <li>Optimización SEO</li>
-          <li>Mantenimiento de sitios web</li>
-        </ul>
+        <div class="container">
+          <h2>Servicios</h2>
+          <div class="services-layout">
+            <div class="services-list">
+              <ul>
+                <li>
+                  <a
+                    href="https://sites.google.com/view/josescobarportfolio"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    >Desarrollo de sitios web</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="https://sites.google.com/view/josescobarportfolio"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    >Diseño responsivo</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="https://sites.google.com/view/josescobarportfolio"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    >Optimización SEO</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="https://sites.google.com/view/josescobarportfolio"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    >Mantenimiento de sitios web</a
+                  >
+                </li>
+              </ul>
+            </div>
+            <div class="services-image">
+              <img
+                src="images/capi4.png"
+                alt="Un capibara trabajando en varios monitores"
+              />
+            </div>
+          </div>
+        </div>
       </section>
       <section class="blog">
-        <h2>Blog</h2>
-        <article>
-          <h3>Capibara Blog</h3>
-          <p>
-            Bienvenido a mi blog. Aquí compartiré mis pensamientos e información
-            sobre desarrollo web, tecnología, IA y más.
-          </p>
-          <a href="#">Leer más</a>
-        </article>
-        <div class="carousel">
-          <div class="carousel-item">Artículo 1</div>
-          <div class="carousel-item">Artículo 2</div>
-          <div class="carousel-item">Artículo 3</div>
+        <div class="container">
+          <h2>Blog</h2>
+          <article>
+            <h3>Capibara Blog</h3>
+            <p>
+              Bienvenido a mi blog. Aquí compartiré mis pensamientos e
+              información sobre desarrollo web, tecnología, IA y más.
+            </p>
+            <a href="#">Leer más</a>
+          </article>
+          <div class="blog-carousel">
+            <div class="carousel-item">Artículo 1</div>
+            <div class="carousel-item">Artículo 2</div>
+            <div class="carousel-item">Artículo 3</div>
+          </div>
         </div>
       </section>
       <!--Sección 4: contacto-->
       <section id="contact" class="contact">
-        <h2>¿Quieres saber mas?</h2>
-        <form>
-          <label for="name">Nombre:</label>
-          <input type="text" id="name" name="name" required />
-          <label for="email">Email:</label>
-          <input type="email" id="email" name="email" required />
-          <label for="message">Mensaje:</label>
-          <textarea id="message" name="message" required></textarea>
-          <button type="submit">Enviar</button>
-        </form>
+        <video autoplay loop muted class="contact-bg-video">
+          <source src="videos/matrix1.mp4" type="video/mp4" />
+          Tu navegador no soporta videos de fondo.
+        </video>
+        <div class="container">
+          <h2>¿Quieres saber mas?</h2>
+          <form>
+            <div class="form-group">
+              <label for="name">Nombre:</label>
+              <input type="text" id="name" name="name" required />
+            </div>
+            <div class="form-group">
+              <label for="email">Email:</label>
+              <input type="email" id="email" name="email" required />
+            </div>
+            <div class="form-group">
+              <label for="message">Mensaje:</label>
+              <textarea id="message" name="message" required></textarea>
+            </div>
+            <button type="submit" class="btn">Enviar</button>
+          </form>
+        </div>
       </section>
     </main>
 
     <footer>
-      <p>&copy; 2025 Developer Capibara. Todos los derechos reservados.</p>
-      <div class="footer-socials">
-        <h4>Redes Sociales</h4>
-        <div class="social-media">
-          <a href="#">Facebook</a>
-          <a href="#">Twitter</a>
-          <a href="#">LinkedIn</a>
-          <a href="#">Instagram</a>
+      <div class="container">
+        <p>&copy; 2025 Developer Capibara. Todos los derechos reservados.</p>
+        <div class="footer-socials">
+          <div class="social-media">
+            <a href="#"><img src="images/facebook.png" alt="Facebook" /></a>
+            <a href="#"><img src="images/xTwitter.png" alt="Twitter" /></a>
+            <a href="#"><img src="images/linkedin.png" alt="LinkedIn" /></a>
+            <a href="#"><img src="images/instagram.png" alt="Instagram" /></a>
+          </div>
         </div>
       </div>
     </footer>

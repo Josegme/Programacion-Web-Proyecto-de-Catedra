@@ -1,0 +1,518 @@
+/* ----- PASO 1: LA BASE ----- */
+
+/* 1. Importar Fuente desde Google Fonts */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap");
+
+/* 2. Definir Variables (Custom Properties) */
+:root {
+  --background-light: #fefae0; /* Un crema claro, como arena o papel viejo */
+  --background-dark: #283618; /* Un verde oscuro, como el musgo o un bosque profundo */
+  --primary-accent: #606c38; /* Un verde oliva, natural y calmado */
+  --secondary-accent: #bc6c25; /* Un color tierra/naranja quemado, como arcilla */
+  --text-light: #fdfbf4; /* Un blanco roto para textos sobre fondos oscuros */
+  --text-dark: #222222; /* Un gris muy oscuro para textos sobre fondos claros */
+
+  --font-main: "Poppins", sans-serif;
+}
+
+/* 3. Reseteo Básico y Estilos Globales */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  list-style: none;
+}
+
+html {
+  /* 4. ¡Nuestro primer efecto de movimiento! */
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-main);
+  background-color: var(--background-light);
+  color: var(--text-dark);
+}
+
+/* 5. Estilos para el contenedor principal */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px; /* Añadimos un poco de espacio en los costados */
+}
+
+/* ----- PASO 2: HEADER Y NAVEGACIÓN ----- */
+
+header {
+  background-color: var(--background-dark);
+  padding: 1rem 0; /* 1rem es una unidad relativa, usualmente 16px */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2); /* Sombra sutil */
+  position: sticky; /* Hacemos que el header se quede fijo al hacer scroll */
+  top: 0;
+  z-index: 100; /* Asegura que esté por encima de otro contenido */
+}
+
+header .container {
+  display: flex;
+  justify-content: space-between; /* Título a la izquierda, nav a la derecha */
+  align-items: center; /* Centra los elementos verticalmente */
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  gap: 1rem; /* Espacio entre el logo y el texto */
+}
+
+.header-logo {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  border: 2px solid var(--secondary-accent);
+}
+
+header h1 {
+  color: var(--text-light);
+  font-weight: 700;
+}
+
+.nav-list {
+  display: flex;
+  gap: 2rem; /* Espacio entre los elementos del menú */
+}
+
+.nav-list a {
+  color: var(--text-light);
+  font-weight: 400;
+  transition: color 0.3s ease; /* Transición suave para el hover */
+}
+
+.nav-list a:hover {
+  color: var(--secondary-accent); /* Cambia al color naranja al pasar el ratón */
+}
+
+/* ----- PASO 3: SECCIÓN HERO Y BOTONES ----- */
+
+.hero {
+  /* 90vh = 90% de la altura de la ventana del navegador */
+  min-height: 90vh;
+  /* ¡Aquí está nuestro capibara! */
+  /* El linear-gradient crea una capa oscura para que el texto resalte */
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('images/capi1.png');
+  background-size: cover;
+  background-position: center;
+
+  /* Centramos el contenido con Flexbox */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: var(--text-light);
+}
+
+.hero h2 {
+  font-size: 3.5rem; /* Texto grande y llamativo */
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: var(--text-light);
+}
+
+.hero p {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+}
+
+.btn {
+  padding: 0.8rem 2rem;
+  border: 2px solid var(--secondary-accent);
+  border-radius: 50px; /* Botones redondeados */
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease; /* Animación para todos los cambios */
+}
+
+.btn-primary {
+  background-color: var(--secondary-accent);
+  color: var(--text-light);
+}
+
+.btn-primary:hover {
+  background-color: transparent;
+  color: var(--secondary-accent);
+  transform: translateY(-3px); /* Efecto de salto */
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); /* Sombra que aparece */
+}
+
+/* ----- PASO 4: SECCIONES DE CONTENIDO ----- */
+
+main section {
+  /* Espacio vertical generoso para cada sección, excepto la hero */
+  padding: 5rem 0;
+}
+
+/* Títulos de sección */
+main section h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 3rem;
+  color: var(--background-dark);
+}
+
+/* Alternar colores de fondo para las secciones. La hero es la 1, about la 2, etc. */
+main section:nth-of-type(even) {
+  background-color: #e9e5d4; /* Un tono ligeramente diferente del crema */
+}
+
+/* Estilos específicos para la lista de servicios */
+.services ul {
+  max-width: 600px; /* Centramos la lista y le damos un ancho máximo */
+  margin: 0 auto;
+  text-align: left;
+}
+
+.services li {
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+  padding-left: 2rem; /* Espacio para el ícono */
+  position: relative; /* Necesario para posicionar el pseudo-elemento */
+}
+
+/* Añadimos un ícono de check antes de cada item */
+.services li::before {
+  content: "✓"; /* Puedes cambiarlo por un SVG o un ícono de fuente */
+  position: absolute;
+  left: 0;
+  color: var(--primary-accent);
+  font-weight: 700;
+}
+
+.services-list a {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.services-list a:hover {
+  color: var(--secondary-accent);
+}
+
+/* ----- PASO 5: LAYOUTS CON IMÁGENES ----- */
+
+.about-layout,
+.services-layout {
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+  text-align: left; /* Resetea la alineación para el texto dentro de las columnas */
+}
+
+.services-list {
+  flex: 1;
+}
+
+.about-text {
+  flex: 1.5; /* Damos más espacio al texto */
+}
+
+.about-image,
+.services-image {
+  flex: 1;
+  position: relative;
+}
+
+.about-image img,
+.services-image img {
+  width: 100%;
+  height: auto;
+  border-radius: 15px;
+  position: relative;
+  z-index: 1;
+  transition: transform 0.4s ease;
+}
+
+/* La sombra 3D */
+.about-image::after,
+.services-image::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 15px;
+  left: 15px;
+  background-color: var(--primary-accent);
+  opacity: 0.6;
+  border-radius: 15px;
+  z-index: 0;
+  transition: transform 0.4s ease;
+}
+
+/* El movimiento al pasar el ratón */
+.about-layout:hover .about-image img,
+.services-layout:hover .services-image img {
+  transform: translate(-12px, -12px);
+}
+
+.about-layout:hover .about-image::after,
+.services-layout:hover .services-image::after {
+  transform: translate(12px, 12px);
+}
+
+/* Alternamos el orden en la sección de servicios */
+.services-layout {
+  flex-direction: row-reverse;
+}
+
+/* Sobrescribimos el centrado anterior de la lista */
+.services ul {
+  max-width: none;
+  margin: 0;
+}
+
+/* ----- PASO 6: BLOG, CONTACTO Y FOOTER ----- */
+
+/* --- Blog --- */
+.blog article {
+  background-color: #fff;
+  padding: 2rem;
+  border-radius: 15px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  margin-bottom: 3rem;
+  text-align: center;
+}
+
+.blog article h3 {
+  color: var(--primary-accent);
+  margin-bottom: 1rem;
+}
+
+.blog article a {
+  color: var(--secondary-accent);
+  font-weight: 600;
+  text-decoration: underline;
+}
+
+.blog-carousel {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+}
+
+.carousel-item {
+  background-color: var(--primary-accent);
+  color: var(--text-light);
+  padding: 1.5rem;
+  border-radius: 10px;
+  text-align: center;
+  min-height: 250px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.carousel-item::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.6));
+  transition: background 0.4s ease;
+}
+
+.carousel-item:hover {
+  transform: scale(1.05) translateY(-10px);
+  box-shadow: 0 15px 30px rgba(40, 54, 24, 0.25);
+}
+
+.carousel-item:hover::before {
+  background: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.4));
+}
+
+.carousel-item:nth-child(1) {
+  background-image: url("images/blog1.png");
+}
+.carousel-item:nth-child(2) {
+  background-image: url("images/blog2.png");
+}
+.carousel-item:nth-child(3) {
+  background-image: url("images/blog3.png");
+}
+
+/* --- Contacto --- */
+.contact {
+  position: relative; /* Para posicionar el video y el overlay */
+  overflow: hidden; /* Evita que el video se desborde */
+}
+
+.contact h2 {
+  color: var(--text-light);
+}
+
+.contact form {
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: left;
+  position: relative; /* Para que el form esté sobre el overlay */
+  z-index: 1;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: var(--text-light);
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 0.8rem;
+  border: 1px solid var(--primary-accent);
+  border-radius: 8px;
+  font-family: var(--font-main);
+  transition: border-color 0.3s ease, background-color 0.3s ease;
+  background-color: rgba(255, 255, 255, 0.1);
+  color: var(--text-light);
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: var(--secondary-accent);
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.contact .btn {
+  background-color: transparent;
+  color: var(--secondary-accent);
+}
+
+.contact .btn:hover {
+  background-color: var(--secondary-accent);
+  color: var(--text-light);
+}
+
+/* Video de fondo y overlay */
+.contact-bg-video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: translate(-50%, -50%);
+  z-index: -2;
+}
+
+.contact::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: -1;
+}
+
+/* --- Footer --- */
+footer {
+  background-color: var(--background-dark);
+  color: var(--text-light);
+  padding: 2rem 0;
+  margin-top: 5rem;
+}
+
+footer .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+footer .social-media a {
+  margin-left: 1.5rem;
+  transition: transform 0.3s ease;
+  display: inline-block; /* Importante para que la transición de transform funcione */
+}
+
+footer .social-media a:hover {
+  transform: translateY(-3px);
+}
+
+footer .social-media img {
+  height: 30px; /* Ajustamos el tamaño aquí */
+  width: 30px;
+  vertical-align: middle; /* Alinea la imagen correctamente con el texto si lo hubiera */
+}
+
+/* ----- VIDEO DE FONDO EN 'SOBRE MI' ----- */
+
+/* Hacemos que la sección 'about' ocupe el espacio para el video */
+section#about {
+  position: relative;
+  overflow: hidden;
+  background: transparent; /* Anulamos el color de fondo que tenía */
+}
+
+/* El título y el layout deben estar por encima del video */
+section#about h2,
+.about-layout {
+  position: relative;
+  z-index: 1;
+}
+
+/* Cambiamos el color del título a claro */
+section#about h2 {
+  color: var(--text-light);
+}
+
+/* Creamos la tarjeta de cristal para el texto */
+.about-text {
+  background: rgba(0, 0, 0, 0.4);
+  padding: 2rem;
+  border-radius: 15px;
+  color: var(--text-light);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px); /* Soporte para Safari */
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* El video de fondo */
+.about-bg-video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  transform: translate(-50%, -50%);
+  z-index: -2;
+}
+
+/* La capa de color oscuro sobre el video */
+section#about::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(40, 54, 24, 0.5); /* Verde oscuro semitransparente */
+  z-index: -1;
+}
