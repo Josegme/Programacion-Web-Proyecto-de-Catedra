@@ -14,7 +14,7 @@
 /* Establezco color de fondo de todo el BODY y asignamos la fuente con la que vamos a trabajar */
 body {
     background-color: #000202;
-    font-family: 'Lotus', sans-serif;
+    font-family: 'Lato', sans-serif;
 }
 
 /* Estilos para el contenedor principal */
@@ -58,7 +58,7 @@ body {
     z-index: 1000;
 }
 
-.navabar {
+.navbar {
     display: flex;    
 }
 
@@ -76,7 +76,7 @@ body {
     width: 0;
 }
 .logo-2 {
-    width: 0;
+    width: 120px; /* Ajusta el tamaño del logo para desktop */
 }
 
 .socials {
@@ -142,7 +142,7 @@ body {
     width: 50%;
     margin-right: 85px;
 }
-.silder-txt h1 {
+.slider-txt h1 {
     font-size: 50px;
     color: #FFFFFF;
     text-transform: uppercase;
@@ -246,7 +246,7 @@ body {
 }
 
 .product-img img {
-    width: 150 px;
+    width: 150px;
     height: 120px;
 }
 
@@ -295,7 +295,7 @@ body {
     width: 50%;
 }
 
-.info-text h2 {
+.info-txt h2 {
     font-size: 75px;
     color: #FFFFFF;
     font-weight: 800;
@@ -409,7 +409,7 @@ body {
     .menu .navbar ul li {
         width: 100%;
     }
-    #menu:checked ~ .navabar {
+    #menu:checked ~ .navbar {
         display: initial;
     }
     .header-content {

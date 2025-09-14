@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -13,22 +13,22 @@
       <h1>Developer Capibara</h1>
       <nav>
         <ul>
-          <li>Inicio</li>
-          <li>Sobre mi</li>
-          <li>Servicos</li>
-          <li>¿Quieres saber mas?</li>
+          <li><a href="#hero">Inicio</a></li>
+          <li><a href="#about">Sobre mi</a></li>
+          <li><a href="#services">Servicios</a></li>
+          <li><a href="#contact">¿Quieres saber más?</a></li>
         </ul>
       </nav>
     </header>
     <!--Contenido del Home: 5 secciones-->
     <main>
-      <section class="hero">
+      <section id="hero" class="hero">
         <h2>Bienvenido a mi sitio web</h2>
         <p>Desarrollador web y entusiasta de la tecnología</p>
         <button>Contactame</button>
       </section>
       <!--Sección 1: sobre mi-->
-      <section class="about">
+      <section id="about" class="about">
         <h2>Sobre mi</h2>
         <p>
           Soy un desarrollador web con experiencia en HTML, CSS, JavaScript y
@@ -36,8 +36,8 @@
           funcionales.
         </p>
       </section>
-        <!--Sección 2: servicios-->
-      <section class="services">
+      <!--Sección 2: servicios-->
+      <section id="services" class="services">
         <h2>Servicios</h2>
         <ul>
           <li>Desarrollo de sitios web</li>
@@ -47,24 +47,23 @@
         </ul>
       </section>
       <section class="blog">
-        <hr />
         <h2>Blog</h2>
         <article>
           <h3>Capibara Blog</h3>
           <p>
-            Bienvenido a mi blog. Aquí compartiré mis pensamientos e información sobre
-            desarrollo web, tecnología, IA y más.
+            Bienvenido a mi blog. Aquí compartiré mis pensamientos e información
+            sobre desarrollo web, tecnología, IA y más.
           </p>
           <a href="#">Leer más</a>
         </article>
-        <carrousel>
+        <div class="carousel">
           <div class="carousel-item">Artículo 1</div>
           <div class="carousel-item">Artículo 2</div>
           <div class="carousel-item">Artículo 3</div>
-        </carrousel>
+        </div>
       </section>
-        <!--Sección 4: contacto-->
-      <section class="contact">
+      <!--Sección 4: contacto-->
+      <section id="contact" class="contact">
         <h2>¿Quieres saber mas?</h2>
         <form>
           <label for="name">Nombre:</label>
@@ -76,18 +75,19 @@
           <button type="submit">Enviar</button>
         </form>
       </section>
-    <br>
     </main>
 
-    <br> <hr />
     <footer>
-        <p>&copy; 2025 Developer Capibara. Todos los derechos reservados.</p>
-        <h4>Rede Sociales</h4>
+      <p>&copy; 2025 Developer Capibara. Todos los derechos reservados.</p>
+      <div class="footer-socials">
+        <h4>Redes Sociales</h4>
         <div class="social-media">
           <a href="#">Facebook</a>
           <a href="#">Twitter</a>
           <a href="#">LinkedIn</a>
           <a href="#">Instagram</a>
+        </div>
+      </div>
     </footer>
 
     <script src="script.js"></script>
