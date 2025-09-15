@@ -340,13 +340,13 @@ main section:nth-of-type(even) {
 }
 
 .carousel-item:nth-child(1) {
-  background-image: url("images/blog1.png");
+  background-image: url("images/capi6.png");
 }
 .carousel-item:nth-child(2) {
-  background-image: url("images/blog2.png");
+  background-image: url("images/capi7.png");
 }
 .carousel-item:nth-child(3) {
-  background-image: url("images/blog3.png");
+  background-image: url("images/capi8.png");
 }
 
 /* --- Contacto --- */
