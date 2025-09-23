@@ -75,3 +75,23 @@ El `style.css` está organizado de forma modular, desde reglas generales a estil
 - **Footer**: Usa Flexbox para alinear el texto de copyright y los logos de redes sociales.
 
 Este enfoque modular y el uso de técnicas modernas como Flexbox, CSS Variables y pseudo-elementos hacen que el código sea mantenible, escalable y visualmente atractivo.
+
+---
+
+## Documentación: Registro de DNI con JavaScript
+
+El archivo `script.js` permite simular el registro de un DNI sin necesidad de una base de datos. Cuando el usuario completa el formulario y lo envía:
+
+- El envío real del formulario se detiene (`preventDefault`).
+- Se obtienen los valores de los campos: Nombres, Apellido, DNI, Fecha de Nacimiento y Domicilio.
+- Se muestra un mensaje emergente (`alert`) con todos los datos ingresados.
+- El formulario se limpia automáticamente después de mostrar el mensaje.
+
+Este comportamiento es útil para pruebas y demostraciones, permitiendo visualizar los datos ingresados por el usuario sin almacenarlos en un servidor.
+
+**Ejemplo de uso:**
+
+1. Completa el formulario de registro.
+2. Haz clic en "Registrar".
+3. Aparecerá un mensaje con los datos ingresados.
+4. El formulario se vacía para un nuevo registro.
