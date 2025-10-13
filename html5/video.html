@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Incrustar videos</title>
+  </head>
+  <body>
+    <h1>Videos HTML5</h1>
+    <video width="320" height="240" controls>
+      <source
+        src="../html5/video/Marvel Studios Avengers Endgame Trailer (Official).mp4"
+        type="video/mp4"
+      />
+      Your browser does not support the video tag.
+      <p>
+        La etiqueta video tiene varios atributos para que podamos manipular el
+        video, como por ejemplo: controls, autoplay, loop, muted, poster, width
+        y height.
+      </p>
+      <!--Forma 1-->
+      <video
+        src="#ruta relativa del video"
+        controls="controls"
+        width="320"
+        height="240"
+        controls
+        autoplay
+        muted
+      ></video>
+      <!--Forma 2-->
+      <video src="" controls>
+        <!--colocar la ruta y el tipo de formato-->
+        <source src="#ruta relativa del video" type="video/mp4" />
+        <source src="#ruta relativa del video" type="video/ogg" />
+        No es compatible con tu navegador.
+    </video>
+    
+  </body>
+</html>
