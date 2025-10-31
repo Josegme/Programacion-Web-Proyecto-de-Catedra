@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio JavaScript</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+        #elemento-a-cambiar {
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="elemento-a-cambiar">
+        <p>Este es el contenido original.</p>
+    </div>
+
+    <button id="boton-cambiar">Haz Clic para Cambiar</button>
+
+    <script>
+        // Seleccionar los elementos del DOM
+        const elemento = document.getElementById('elemento-a-cambiar');
+        const boton = document.getElementById('boton-cambiar');
+
+        // Agregar un event listener al botón
+        boton.addEventListener('click', () => {
+            // Cambiar el contenido de texto del elemento
+            const parrafo = elemento.querySelector('p');
+            parrafo.textContent = '¡El contenido ha sido cambiado!';
+
+            // Cambiar el color de fondo del elemento
+            elemento.style.backgroundColor = '#a7c7e7'; // Un color azul pastel
+            elemento.style.borderColor = '#6a9ac4';
+        });
+    </script>
+
+</body>
+</html>
