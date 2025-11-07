@@ -22,11 +22,11 @@
           src="images/logo.svg"
           alt="Logo de Comidas Rápidas"
         />
-        <input type="checkbox" id="menu" />
-        <label for="menu">
-          <img src="images/menu.png" class="menu-icono" alt="Abrir menú" />
-        </label>
-        <nav class="navbar">
+        <!-- Requisito de Actividad 2: Botón para menú hamburguesa -->
+        <button class="menu-toggle" id="menu-toggle" aria-label="Abrir menú">
+          <img src="images/menu.png" class="menu-icono" alt="" />
+        </button>
+        <nav class="navbar" id="navbar">
           <div class="menu-1">
             <ul>
               <li><a href="#">Inicio</a></li>
@@ -68,21 +68,18 @@
       <div class="header-content container">
         <div class="swiper mySwiper-1">
           <div class="swiper-wrapper">
-            <!--Slider Content x1-->
             <div class="swiper-slide">
               <div class="slider">
                 <div class="slider-txt">
-                  <h1>Hamburguesa</h1>
+                  <h1>Hamburguesa Clásica</h1>
                   <p>
-                    Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                    Obcaecati inventore delectus voluptatum facilis quae,
-                    repellendus aliquid quis tempore perferendis adipisci ad
-                    quas modi sint dolor qu isquam labore esse dolore
-                    repudiandae.
+                    Carne 100% de primera, vegetales frescos y nuestro pan
+                    artesanal. La perfección existe y la puedes probar hoy.
+                    ¿Estás listo para la mejor hamburguesa de tu vida?
                   </p>
                   <div class="botones">
-                    <a href="#" class="btn-1">Comprar</a>
-                    <a href="#" class="btn-2">Menú</a>
+                    <a href="#" class="btn-1">¡La Quiero Ahora!</a>
+                    <a href="#" class="btn-2">Ver Todo el Menú</a>
                   </div>
                 </div>
                 <div class="slider-img">
@@ -98,17 +95,15 @@
             <div class="swiper-slide">
               <div class="slider">
                 <div class="slider-txt">
-                  <h1>Hamburguesa</h1>
+                  <h1>Papas Insuperables</h1>
                   <p>
-                    Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                    Obcaecati inventore delectus voluptatum facilis quae,
-                    repellendus aliquid quis tempore perferendis adipisci ad
-                    quas modi sint dolor qu isquam labore esse dolore
-                    repudiandae.
+                    Cortadas a mano y fritas hasta el punto exacto de
+                    perfección. Crujientes por fuera, suaves por dentro. El
+                    acompañamiento ideal que a menudo se roba el show.
                   </p>
                   <div class="botones">
-                    <a href="#" class="btn-1">Comprar</a>
-                    <a href="#" class="btn-2">Menú</a>
+                    <a href="#" class="btn-1">¡Las Quiero Ahora!</a>
+                    <a href="#" class="btn-2">Ver Todo el Menú</a>
                   </div>
                 </div>
                 <div class="slider-img">
@@ -121,17 +116,15 @@
             <div class="swiper-slide">
               <div class="slider">
                 <div class="slider-txt">
-                  <h1>Hamburguesa</h1>
+                  <h1>Hot Dogs de Autor</h1>
                   <p>
-                    Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                    Obcaecati inventore delectus voluptatum facilis quae,
-                    repellendus aliquid quis tempore perferendis adipisci ad
-                    quas modi sint dolor qu isquam labore esse dolore
-                    repudiandae.
+                    Olvídate de todo lo que conoces. Salchicha premium, pan
+                    fresco y combinaciones de toppings que explotan de sabor en
+                    tu boca. Atrévete a probar algo único.
                   </p>
                   <div class="botones">
-                    <a href="#" class="btn-1">Comprar</a>
-                    <a href="#" class="btn-2">Menú</a>
+                    <a href="#" class="btn-1">¡Lo Quiero Ahora!</a>
+                    <a href="#" class="btn-2">Ver Todo el Menú</a>
                   </div>
                 </div>
                 <div class="slider-img">
@@ -172,8 +165,11 @@
                     <img src="images/food1.png" alt="Hamburguesa Clásica" />
                   </div>
                   <div class="product-txt">
-                    <h4>Producto A</h4>
-                    <p>Calidad Premium</p>
+                    <h4>La Clásica</h4>
+                    <p>
+                      La que nunca falla. Carne, queso cheddar y nuestra salsa
+                      secreta.
+                    </p>
                     <span class="price">$80.00</span>
                   </div>
                 </div>
@@ -186,8 +182,11 @@
                     <img src="images/food4.png" alt="Burritos" />
                   </div>
                   <div class="product-txt">
-                    <h4>Producto B</h4>
-                    <p>Calidad Premium</p>
+                    <h4>Doble Bacon</h4>
+                    <p>
+                      Doble carne, doble queso y bacon extra crujiente. Para un
+                      hambre voraz.
+                    </p>
                     <span class="price">$100.00</span>
                   </div>
                 </div>
@@ -200,8 +199,11 @@
                     <img src="images/food5.png" alt="Burritos" />
                   </div>
                   <div class="product-txt">
-                    <h4>Producto C</h4>
-                    <p>Calidad Premium</p>
+                    <h4>Volcán de Queso</h4>
+                    <p>
+                      Rellena de queso fundido que explota en cada mordida. Solo
+                      para valientes.
+                    </p>
                     <span class="price">$120.00</span>
                   </div>
                 </div>
@@ -227,8 +229,11 @@
                     <img src="images/food4.png" alt="tacos" />
                   </div>
                   <div class="product-txt">
-                    <h4>Producto A</h4>
-                    <p>Calidad Premium</p>
+                    <h4>Burrito Carnívoro</h4>
+                    <p>
+                      Carne asada, frijoles, arroz y pico de gallo. Potencia y
+                      sabor en cada bocado.
+                    </p>
                     <span class="price">$80.00</span>
                   </div>
                 </div>
@@ -241,8 +246,11 @@
                     <img src="images/food5.png" alt="tacos" />
                   </div>
                   <div class="product-txt">
-                    <h4>Producto B</h4>
-                    <p>Calidad Premium</p>
+                    <h4>Pollo Chipotle</h4>
+                    <p>
+                      Pollo marinado en chipotle con un toque picante y cremoso
+                      aguacate.
+                    </p>
                     <span class="price">$100.00</span>
                   </div>
                 </div>
@@ -270,7 +278,7 @@
 
         <!--Swiper de Variedad-->
         <input type="radio" name="tabs" id="tab3" class="tabInput" value="3" />
-        <label for="tab3">Variedad</label>
+        <label for="tab3">Para Picar</label>
         <div class="tab">
           <div class="swiper mySwiper-2" id="swiper3">
             <div class="swiper-wrapper">
@@ -282,8 +290,11 @@
                     <img src="images/food7.png" alt="platos de comida" />
                   </div>
                   <div class="product-txt">
-                    <h4>Producto A</h4>
-                    <p>Calidad Premium</p>
+                    <h4>Aros de Cebolla</h4>
+                    <p>
+                      Crujientes, dorados y adictivos. Ideales para empezar o
+                      acompañar.
+                    </p>
                     <span class="price">$80.00</span>
                   </div>
                 </div>
@@ -296,8 +307,11 @@
                     <img src="images/food8.png" alt="carnes en palillos" />
                   </div>
                   <div class="product-txt">
-                    <h4>Producto B</h4>
-                    <p>Calidad Premium</p>
+                    <h4>Brochetas de Pollo</h4>
+                    <p>
+                      Tiernos trozos de pollo marinado y asado a la perfección.
+                      Ligeras y sabrosas.
+                    </p>
                     <span class="price">$100.00</span>
                   </div>
                 </div>
@@ -310,8 +324,11 @@
                     <img src="images/food9.png" alt="porcion de pizza" />
                   </div>
                   <div class="product-txt">
-                    <h4>Producto C</h4>
-                    <p>Calidad Premium</p>
+                    <h4>Pizza Pocket</h4>
+                    <p>
+                      El increíble sabor de la pizza en un formato perfecto para
+                      comer con la mano.
+                    </p>
                     <span class="price">$120.00</span>
                   </div>
                 </div>
@@ -340,6 +357,47 @@
           consectetur explicabo accusantium!
         </p>
         <a href="#" class="btn-2">Más Información</a>
+        <!-- Requisito de Actividad 4: Botón para ejercicio de eventos -->
+        <button id="change-style-btn" class="btn-1" style="margin-top: 20px">
+          Cambiar Estilo
+        </button>
+      </div>
+    </section>
+
+    <!-- requisito Actividad 1 -->
+    <section class="info-card-section">
+      <div class="info-card">
+        <div class="info-card-image"></div>
+        <h2>Obten unas Papas Gratis en tu Próxima Compra</h2>
+
+        <form id="promo-form" class="promo-form" action="#" method="post">
+          <div class="form-group">
+            <label for="promo-nombre">Nombre</label>
+            <input type="text" id="promo-nombre" name="nombre" required />
+          </div>
+
+          <div class="form-group">
+            <label for="promo-apellido">Apellido</label>
+            <input type="text" id="promo-apellido" name="apellido" required />
+          </div>
+
+          <div class="form-group">
+            <label for="promo-dni">DNI</label>
+            <input type="text" id="promo-dni" name="dni" required />
+          </div>
+
+          <div class="form-group">
+            <label for="promo-mail">Mail</label>
+            <input type="email" id="promo-mail" name="mail" required />
+          </div>
+
+          <div class="form-actions">
+            <button type="submit" class="btn-1">Enviar</button>
+            <button type="reset" class="btn-2">Limpiar</button>
+          </div>
+        </form>
+
+        <p class="form-feedback" aria-live="polite"></p>
       </div>
     </section>
 

@@ -5,12 +5,13 @@
 
 /* 2. Definir Variables (Custom Properties) */
 :root {
-  --background-light: #fefae0; /* Un crema claro, como arena o papel viejo */
-  --background-dark: #283618; /* Un verde oscuro, como el musgo o un bosque profundo */
-  --primary-accent: #606c38; /* Un verde oliva, natural y calmado */
-  --secondary-accent: #bc6c25; /* Un color tierra/naranja quemado, como arcilla */
-  --text-light: #fdfbf4; /* Un blanco roto para textos sobre fondos oscuros */
-  --text-dark: #222222; /* Un gris muy oscuro para textos sobre fondos claros */
+  --background-light: #e1d4f5;
+  --background-dark: #2c0052;
+  --primary-accent: #6a0dad;
+  --secondary-accent: #9400d3;
+  --text-light: #ffffff;
+  --text-dark: #0a0a0a;
+  --card-bg: rgba(108, 13, 173, 0.08);
 
   --font-main: "Poppins", sans-serif;
 }
@@ -25,7 +26,7 @@
 }
 
 html {
-  /* 4. ¡Nuestro primer efecto de movimiento! */
+  /* 4. ¡primer efecto de movimiento! */
   scroll-behavior: smooth;
 }
 
@@ -39,7 +40,8 @@ body {
 .container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 20px; /* Añadimos un poco de espacio en los costados */
+  padding: 0 40px; /* Aumentamos el espacio en los costados */
+  width: 100%; /* Aseguramos que tome todo el ancho disponible */
 }
 
 /* ----- PASO 2: HEADER Y NAVEGACIÓN ----- */
@@ -162,7 +164,7 @@ main section h2 {
 
 /* Alternar colores de fondo para las secciones. La hero es la 1, about la 2, etc. */
 main section:nth-of-type(even) {
-  background-color: #e9e5d4; /* Un tono ligeramente diferente del crema */
+  background-color: var(--card-bg);
 }
 
 /* Estilos específicos para la lista de servicios */
@@ -204,22 +206,32 @@ main section:nth-of-type(even) {
 .services-layout {
   display: flex;
   align-items: center;
-  gap: 3rem;
-  text-align: left; /* Resetea la alineación para el texto dentro de las columnas */
+  justify-content: center;
+  gap: 4rem;
+  text-align: left;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 2rem;
 }
 
 .services-list {
   flex: 1;
+  max-width: 500px;
+  margin: 0 auto;
 }
 
 .about-text {
-  flex: 1.5; /* Damos más espacio al texto */
+  flex: 1.2;
+  max-width: 600px;
+  margin: 0 auto;
 }
 
 .about-image,
 .services-image {
   flex: 1;
   position: relative;
+  max-width: 450px;
+  margin: 0 auto;
 }
 
 .about-image img,
@@ -232,7 +244,7 @@ main section:nth-of-type(even) {
   transition: transform 0.4s ease;
 }
 
-/* La sombra 3D */
+/* La sombra 3D mejorada */
 .about-image::after,
 .services-image::after {
   content: "";
@@ -241,11 +253,12 @@ main section:nth-of-type(even) {
   height: 100%;
   top: 15px;
   left: 15px;
-  background-color: var(--primary-accent);
-  opacity: 0.6;
+  background-color: var(--secondary-accent);
+  opacity: 0.4;
   border-radius: 15px;
   z-index: 0;
-  transition: transform 0.4s ease;
+  transition: transform 0.4s ease, opacity 0.4s ease;
+  filter: blur(2px); /* Efecto de desenfoque suave */
 }
 
 /* El movimiento al pasar el ratón */
@@ -273,50 +286,84 @@ main section:nth-of-type(even) {
 /* ----- PASO 6: BLOG, CONTACTO Y FOOTER ----- */
 
 /* --- Blog --- */
-.blog article {
-  background-color: #fff;
-  padding: 2rem;
+.blog-content {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.blog-intro {
+  background-color: var(--card-bg);
+  padding: 2.5rem;
   border-radius: 15px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-  margin-bottom: 3rem;
+  box-shadow: 0 8px 20px rgba(44, 0, 82, 0.15);
+  margin: 0 auto 3rem;
   text-align: center;
+  max-width: 800px;
+  border: 1px solid rgba(106, 13, 173, 0.2);
 }
 
-.blog article h3 {
+.blog-intro h3 {
   color: var(--primary-accent);
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
+  font-size: 2rem;
 }
 
-.blog article a {
+.blog-link {
+  display: inline-block;
   color: var(--secondary-accent);
   font-weight: 600;
-  text-decoration: underline;
+  padding: 0.5rem 1.5rem;
+  border: 2px solid var(--secondary-accent);
+  border-radius: 25px;
+  margin-top: 1rem;
+  transition: all 0.3s ease;
+}
+
+.blog-link:hover {
+  background-color: var(--secondary-accent);
+  color: var(--text-light);
+  transform: translateY(-2px);
+}
+
+.carousel-item h4 {
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+  color: var(--text-light);
+}
+
+.carousel-item p {
+  font-size: 0.95rem;
+  opacity: 0.9;
 }
 
 .blog-carousel {
   display: flex;
-  gap: 1.5rem;
+  gap: 2rem; /* Aumentamos el espacio entre elementos */
   justify-content: center;
+  padding: 1rem; /* Añadimos padding para evitar que las sombras se corten */
+  max-width: 1000px; /* Limitamos el ancho para mejor organización */
+  margin: 0 auto; /* Centramos el carrusel */
 }
 
 .carousel-item {
-  background-color: var(--primary-accent);
+  background-color: var(--background-dark);
   color: var(--text-light);
-  padding: 1.5rem;
-  border-radius: 10px;
+  padding: 2rem;
+  border-radius: 15px;
   text-align: center;
-  min-height: 250px;
+  min-height: 200px;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   background-size: cover;
   background-position: center;
   position: relative;
   overflow: hidden;
-  transition: transform 0.4s ease, box-shadow 0.4s ease;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-  font-size: 1.2rem;
-  font-weight: 600;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 8px 25px rgba(44, 0, 82, 0.2);
+  flex: 1;
+  max-width: 350px;
 }
 
 .carousel-item::before {

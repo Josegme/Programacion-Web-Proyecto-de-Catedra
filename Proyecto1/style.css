@@ -118,17 +118,19 @@ body {
     color: #DB241B;
 }
 
-#menu {
-    display:none
-}
 .menu-icono {
     width: 25px;
 }
 
-.menu label {
+/* Requisito de Actividad 2: Estilos para el botón del menú */
+.menu-toggle {
+    display: none; /* Oculto en desktop */
+    background: none;
+    border: none;
     cursor: pointer;
-    display: none;
+    padding: 0;
 }
+
 
 /*Estilos para el header*/
 .header-content {
@@ -182,8 +184,12 @@ body {
     width: 50%;
 }
 .slider-img img {
-    margin-right: 225px;
-    width: 550px;
+    /* Make slider images responsive: use max-width and remove fixed margins to avoid overlap */
+    width: 100%;
+    max-width: 550px;
+    height: auto;
+    margin: 0; /* remove fixed margin that caused overlap */
+    display: block;
 }
 
 /*Productos*/
@@ -399,9 +405,12 @@ body {
     .logo-2 {
         width: 0;
     }
-    .menu label {
-        display: initial;
+
+    /* Requisito de Actividad 2: Mostrar botón y manejar visibilidad de navbar */
+    .menu-toggle {
+        display: block; /* Mostrar el botón en móvil */
     }
+
     .menu .navbar {
         position: absolute;
         top: 100%;
@@ -410,11 +419,13 @@ body {
         background-color: #181818;
         display: none;
     }
+
+    .menu .navbar.navbar--visible {
+        display: block; /* Mostrar navbar con la clase de JS */
+    }
+
     .menu .navbar ul li {
         width: 100%;
-    }
-    #menu:checked ~ .navbar {
-        display: initial;
     }
     .header-content {
         padding: 30px;
@@ -513,4 +524,88 @@ body {
     }
 
 
+}
+
+/* requisito Actividad 1 */
+.info-card-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 80vh;
+  background-color: #0d0d0d;
+  padding: 50px 20px;
+}
+
+.info-card {
+  background-color: #181818;
+  border: 1px solid #DB241B;
+  border-radius: 15px;
+  padding: 30px;
+  width: 90%;
+  max-width: 400px;
+  text-align: center;
+  color: #FFFFFF;
+  box-shadow: 0 0 20px rgba(219, 36, 27, 0.3);
+}
+
+.info-card-image {
+  width: 100px;
+  height: 100px;
+  background-color: #DB241B;
+  border-radius: 10px;
+  margin: 0 auto 20px auto;
+}
+
+.info-card h2 {
+  margin-bottom: 15px;
+  font-size: 28px;
+}
+
+.info-card p {
+  color: #A7A7A7;
+}
+
+/* Styles for promotional form inside the info-card */
+.promo-form {
+    margin-top: 18px;
+    text-align: left;
+}
+.promo-form .form-group {
+    margin-bottom: 12px;
+}
+.promo-form label {
+    display: block;
+    font-weight: 700;
+    color: #DB241B;
+    margin-bottom: 6px;
+}
+.promo-form input[type="text"],
+.promo-form input[type="email"] {
+    width: 100%;
+    padding: 8px 10px;
+    border-radius: 8px;
+    border: 1px solid #444;
+    background: #0f0f0f;
+    color: #fff;
+}
+.form-actions {
+    margin-top: 14px;
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+.form-feedback {
+    margin-top: 12px;
+    color: #e9e5d4;
+    font-weight: 600;
+}
+
+@media (max-width: 767px) {
+  .info-card-section {
+    background-color: #252525; /* Cambio de color para pantallas pequeñas */
+  }
+
+  .info-card h2 {
+    font-size: 24px;
+  }
 }
