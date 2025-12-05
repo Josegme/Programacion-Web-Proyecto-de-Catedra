@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MARVEL STUDIOS | Heroes Database</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto+Condensed:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: 'Roboto Condensed', sans-serif;
+        background: #0a0a0a url('img/fondo.jpg') center/cover fixed;
+        background-blend-mode: overlay;
+        min-height: 100vh;
+        color: #fff;
+        overflow-x: hidden;
+      }
+
+      body::before {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: radial-gradient(circle at center, transparent 0%, rgba(0,0,0,0.7) 100%);
+        pointer-events: none;
+        z-index: 0;
+      }
+
+      .container {
+        position: relative;
+        z-index: 1;
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+
+      header {
+        background: rgba(0, 0, 0, 0.9);
+        padding: 15px 30px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 3px solid #ed1d24;
+        box-shadow: 0 5px 30px rgba(237, 29, 36, 0.5);
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        backdrop-filter: blur(10px);
+      }
+
+      .logo {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+      }
+
+      .logo img {
+        height: 50px;
+        filter: drop-shadow(0 0 10px rgba(237, 29, 36, 0.8));
+      }
+
+      .logo h1 {
+        font-family: 'Bebas Neue', cursive;
+        font-size: 32px;
+        color: #ed1d24;
+        letter-spacing: 3px;
+        text-shadow: 0 0 20px rgba(237, 29, 36, 0.8);
+      }
+
+      .hamburger {
+        width: 30px;
+        height: 25px;
+        position: relative;
+        cursor: pointer;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        z-index: 10;
+      }
+
+      .hamburger span {
+        display: block;
+        height: 4px;
+        background: #ed1d24;
+        border-radius: 3px;
+        transition: all 0.3s ease;
+        box-shadow: 0 0 10px rgba(237, 29, 36, 0.6);
+      }
+
+      .hamburger.active span:nth-child(1) {
+        transform: translateY(11px) rotate(45deg);
+      }
+
+      .hamburger.active span:nth-child(2) {
+        opacity: 0;
+      }
+
+      .hamburger.active span:nth-child(3) {
+        transform: translateY(-11px) rotate(-45deg);
+      }
+
+      .nav-menu {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 300px;
+        height: 100vh;
+        background: linear-gradient(135deg, #000 0%, #1a0000 100%);
+        transition: right 0.4s ease;
+        box-shadow: -5px 0 30px rgba(237, 29, 36, 0.5);
+        border-left: 3px solid #ed1d24;
+        z-index: 999;
+        padding-top: 80px;
+      }
+
+      .nav-menu.active {
+        right: 0;
+      }
+
+      .nav-menu ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .nav-menu li {
+        border-bottom: 1px solid rgba(237, 29, 36, 0.2);
+      }
+
+      .nav-menu li:last-child {
+        border-bottom: none;
+      }
+
+      .nav-menu a {
+        display: block;
+        padding: 20px 30px;
+        color: #fff;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        font-weight: 700;
+        font-size: 18px;
+        font-family: 'Bebas Neue', cursive;
+        letter-spacing: 2px;
+      }
+
+      .nav-menu a:hover {
+        background: rgba(237, 29, 36, 0.3);
+        color: #ed1d24;
+        padding-left: 40px;
+        text-shadow: 0 0 10px rgba(237, 29, 36, 0.8);
+      }
+
+      .overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.8);
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.4s ease;
+        z-index: 998;
+      }
+
+      .overlay.active {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      .hero-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        gap: 30px;
+        margin-top: 40px;
+      }
+
+      .hero-card {
+        background: linear-gradient(145deg, rgba(0,0,0,0.95) 0%, rgba(26,0,0,0.95) 100%);
+        border: 2px solid #ed1d24;
+        border-radius: 15px;
+        overflow: hidden;
+        transition: all 0.4s ease;
+        box-shadow: 0 10px 40px rgba(237, 29, 36, 0.3);
+        position: relative;
+      }
+
+      .hero-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(135deg, transparent 0%, rgba(237, 29, 36, 0.1) 100%);
+        opacity: 0;
+        transition: opacity 0.4s ease;
+        pointer-events: none;
+      }
+
+      .hero-card:hover {
+        transform: translateY(-10px) scale(1.02);
+        box-shadow: 0 20px 60px rgba(237, 29, 36, 0.6);
+        border-color: #fff;
+      }
+
+      .hero-card:hover::before {
+        opacity: 1;
+      }
+
+      .hero-image {
+        width: 100%;
+        height: 350px;
+        overflow: hidden;
+        position: relative;
+        background: #000;
+      }
+
+      .hero-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.4s ease;
+        filter: brightness(0.9);
+      }
+
+      .hero-card:hover .hero-image img {
+        transform: scale(1.1);
+        filter: brightness(1.1);
+      }
+
+      .hero-image::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 100px;
+        background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+      }
+
+      .hero-content {
+        padding: 25px;
+      }
+
+      .hero-name {
+        font-family: 'Bebas Neue', cursive;
+        font-size: 32px;
+        color: #ed1d24;
+        margin-bottom: 15px;
+        letter-spacing: 2px;
+        text-shadow: 0 0 20px rgba(237, 29, 36, 0.6);
+      }
+
+      .section-title {
+        font-family: 'Bebas Neue', cursive;
+        font-size: 18px;
+        color: #fff;
+        margin: 15px 0 8px 0;
+        letter-spacing: 1px;
+        border-left: 3px solid #ed1d24;
+        padding-left: 10px;
+      }
+
+      .hero-info {
+        color: #ccc;
+        line-height: 1.8;
+        font-size: 14px;
+        margin-bottom: 10px;
+      }
+
+      .hero-info strong {
+        color: #ed1d24;
+        font-weight: 700;
+      }
+
+      .powers-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-bottom: 15px;
+      }
+
+      .power-tag {
+        background: rgba(237, 29, 36, 0.2);
+        color: #ed1d24;
+        padding: 5px 12px;
+        border-radius: 20px;
+        font-size: 12px;
+        font-weight: 600;
+        border: 1px solid rgba(237, 29, 36, 0.4);
+        transition: all 0.3s ease;
+      }
+
+      .power-tag:hover {
+        background: #ed1d24;
+        color: #000;
+        transform: scale(1.05);
+      }
+
+      .personality {
+        color: #aaa;
+        font-style: italic;
+        font-size: 14px;
+        line-height: 1.6;
+        border-left: 3px solid rgba(237, 29, 36, 0.5);
+        padding-left: 15px;
+        margin-top: 10px;
+      }
+      @media (max-width: 768px) {
+        .hero-grid {
+          grid-template-columns: 1fr;
+        }
+        
+        .logo h1 {
+          font-size: 24px;
+        }
+
+        .nav-menu {
+          width: 100%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="overlay" id="overlay"></div>
+    
+    <header>
+      <div class="logo">
+        <img src="img/logo.png" alt="Marvel Logo">
+        <h1>HEROES DATABASE</h1>
+      </div>
+      <div class="hamburger" id="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </header>
+
+    <nav class="nav-menu" id="navMenu">
+      <ul>
+        <li><a href="#avengers">AVENGERS</a></li>
+        <li><a href="#x-men">X-MEN</a></li>
+        <li><a href="#guardians">GUARDIANS</a></li>
+      </ul>
+    </nav>
+
+    <div class="container">
+      <div class="hero-grid">
+        <!-- Iron Man Card -->
+        <div class="hero-card">
+          <div class="hero-image">
+            <img src="img/otros.jpg" alt="Iron Man">
+          </div>
+          <div class="hero-content">
+            <h2 class="hero-name">IRON MAN</h2>
+            
+            <h3 class="section-title">Características Físicas</h3>
+            <div class="hero-info">
+              <strong>Nombre:</strong> Tony Stark<br>
+              <strong>Altura:</strong> 1.85 m<br>
+              <strong>Peso:</strong> 102 kg<br>
+              <strong>Ojos:</strong> Azules<br>
+              <strong>Cabello:</strong> Negro
+            </div>
+
+            <h3 class="section-title">Poderes y Habilidades</h3>
+            <div class="powers-list">
+              <span class="power-tag">Genio Tecnológico</span>
+              <span class="power-tag">Armadura Potenciada</span>
+              <span class="power-tag">Vuelo</span>
+              <span class="power-tag">Rayos Repulsores</span>
+              <span class="power-tag">Super Fuerza</span>
+              <span class="power-tag">Arsenal Integrado</span>
+            </div>
+
+            <h3 class="section-title">Personalidad</h3>
+            <p class="personality">
+              Brillante, carismático y a veces arrogante. Tony Stark es un genio 
+              visionario que combina su ingenio con un profundo sentido de 
+              responsabilidad. Detrás de su actitud despreocupada, se esconde un 
+              héroe dispuesto a sacrificarlo todo por proteger al mundo.
+            </p>
+          </div>
+        </div>
+
+        <!-- Spider-Man Card -->
+        <div class="hero-card">
+          <div class="hero-image">
+            <img src="img/fondo.jpg" alt="Spider-Man">
+          </div>
+          <div class="hero-content">
+            <h2 class="hero-name">SPIDER-MAN</h2>
+            
+            <h3 class="section-title">Características Físicas</h3>
+            <div class="hero-info">
+              <strong>Nombre:</strong> Peter Parker<br>
+              <strong>Altura:</strong> 1.78 m<br>
+              <strong>Peso:</strong> 76 kg<br>
+              <strong>Ojos:</strong> Marrones<br>
+              <strong>Cabello:</strong> Castaño
+            </div>
+
+            <h3 class="section-title">Poderes y Habilidades</h3>
+            <div class="powers-list">
+              <span class="power-tag">Sentido Arácnido</span>
+              <span class="power-tag">Super Fuerza</span>
+              <span class="power-tag">Agilidad Sobrehumana</span>
+              <span class="power-tag">Adherencia a Superficies</span>
+              <span class="power-tag">Lanzatelarañas</span>
+              <span class="power-tag">Reflejos Mejorados</span>
+            </div>
+
+            <h3 class="section-title">Personalidad</h3>
+            <p class="personality">
+              Ingenioso, responsable y con gran sentido del humor. Peter Parker 
+              equilibra su vida como estudiante y superhéroe con dedicación. 
+              Siempre guiado por el principio de que "un gran poder conlleva una 
+              gran responsabilidad", nunca se rinde ante la adversidad.
+            </p>
+          </div>
+        </div>
+
+        <!-- Captain America Card -->
+        <div class="hero-card">
+          <div class="hero-image">
+            <img src="img/otros.jpg" alt="Captain America">
+          </div>
+          <div class="hero-content">
+            <h2 class="hero-name">CAPTAIN AMERICA</h2>
+            
+            <h3 class="section-title">Características Físicas</h3>
+            <div class="hero-info">
+              <strong>Nombre:</strong> Steve Rogers<br>
+              <strong>Altura:</strong> 1.88 m<br>
+              <strong>Peso:</strong> 109 kg<br>
+              <strong>Ojos:</strong> Azules<br>
+              <strong>Cabello:</strong> Rubio
+            </div>
+
+            <h3 class="section-title">Poderes y Habilidades</h3>
+            <div class="powers-list">
+              <span class="power-tag">Super Fuerza</span>
+              <span class="power-tag">Resistencia Mejorada</span>
+              <span class="power-tag">Agilidad Máxima</span>
+              <span class="power-tag">Factor Curativo</span>
+              <span class="power-tag">Táctico Maestro</span>
+              <span class="power-tag">Escudo Vibranium</span>
+            </div>
+
+            <h3 class="section-title">Personalidad</h3>
+            <p class="personality">
+              Noble, valiente e inquebrantable en sus convicciones. Steve Rogers 
+              representa los más altos ideales del heroísmo. Líder natural y 
+              estratega brillante, siempre pone el bienestar de los demás por 
+              encima del suyo propio. Su código moral es su mayor fortaleza.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const hamburger = document.getElementById("hamburger");
+      const navMenu = document.getElementById("navMenu");
+
+      const overlay = document.getElementById("overlay");
+
+      hamburger.addEventListener("click", (e) => {
+        e.stopPropagation();
+        hamburger.classList.toggle("active");
+        navMenu.classList.toggle("active");
+        overlay.classList.toggle("active");
+      });
+
+      // Cerrar el menú al hacer clic en un enlace
+      const navLinks = document.querySelectorAll(".nav-menu a");
+      navLinks.forEach((link) => {
+        link.addEventListener("click", () => {
+          hamburger.classList.remove("active");
+          navMenu.classList.remove("active");
+          overlay.classList.remove("active");
+        });
+      });
+
+      // Cerrar el menú al hacer clic en el overlay
+      overlay.addEventListener("click", () => {
+        hamburger.classList.remove("active");
+        navMenu.classList.remove("active");
+        overlay.classList.remove("active");
+      });
+
+      // Efectos de scroll para las tarjetas
+      const heroCards = document.querySelectorAll(".hero-card");
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: "0px 0px -100px 0px"
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.style.opacity = "1";
+            entry.target.style.transform = "translateY(0)";
+          }
+        });
+      }, observerOptions);
+
+      heroCards.forEach(card => {
+        card.style.opacity = "0";
+        card.style.transform = "translateY(50px)";
+        card.style.transition = "opacity 0.6s ease, transform 0.6s ease";
+        observer.observe(card);
+      });
+    </script>
+  </body>
+</html>

@@ -3,11 +3,360 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Ejercicio de Scope</title>
+    <title>MARVEL STUDIOS | Heroes Database</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto+Condensed:wght@400;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <style>
+      .hero-section {
+        min-height: 80vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        padding: 60px 20px;
+        position: relative;
+      }
+
+      .hero-logo {
+        width: 100%;
+        max-width: 500px;
+        margin-bottom: 30px;
+        animation: pulse 3s ease infinite;
+      }
+
+      .hero-title {
+        font-family: 'Bebas Neue', cursive;
+        font-size: 64px;
+        color: var(--marvel-red);
+        letter-spacing: 8px;
+        text-shadow: 0 0 40px rgba(237, 29, 36, 0.8);
+        margin-bottom: 20px;
+        animation: glow 2s ease infinite;
+      }
+
+      .hero-subtitle {
+        font-size: 24px;
+        color: var(--text-gray);
+        margin-bottom: 40px;
+        letter-spacing: 2px;
+      }
+
+      .cta-buttons {
+        display: flex;
+        gap: 20px;
+        flex-wrap: wrap;
+        justify-content: center;
+        margin-bottom: 60px;
+      }
+
+      .cta-btn {
+        padding: 15px 35px;
+        background: var(--marvel-red);
+        color: var(--text-light);
+        text-decoration: none;
+        border-radius: 30px;
+        font-family: 'Bebas Neue', cursive;
+        font-size: 20px;
+        letter-spacing: 2px;
+        transition: all 0.3s ease;
+        box-shadow: 0 5px 20px rgba(237, 29, 36, 0.5);
+      }
+
+      .cta-btn:hover {
+        background: #fff;
+        color: var(--marvel-red);
+        transform: translateY(-5px);
+        box-shadow: 0 10px 30px rgba(237, 29, 36, 0.7);
+      }
+
+      .cta-btn-secondary {
+        background: transparent;
+        border: 2px solid var(--marvel-red);
+        color: var(--marvel-red);
+      }
+
+      .cta-btn-secondary:hover {
+        background: var(--marvel-red);
+        color: var(--text-light);
+      }
+
+      .features-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 30px;
+        margin: 60px 0;
+      }
+
+      .feature-card {
+        background: linear-gradient(145deg, rgba(0,0,0,0.95) 0%, rgba(26,0,0,0.95) 100%);
+        border: 2px solid rgba(237, 29, 36, 0.5);
+        border-radius: 15px;
+        padding: 40px 30px;
+        text-align: center;
+        transition: all 0.4s ease;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      }
+
+      .feature-card:hover {
+        transform: translateY(-10px);
+        border-color: var(--marvel-red);
+        box-shadow: 0 20px 50px rgba(237, 29, 36, 0.6);
+      }
+
+      .feature-icon {
+        font-size: 64px;
+        margin-bottom: 20px;
+        filter: drop-shadow(0 0 10px rgba(237, 29, 36, 0.8));
+      }
+
+      .feature-title {
+        font-family: 'Bebas Neue', cursive;
+        font-size: 28px;
+        color: var(--marvel-red);
+        letter-spacing: 2px;
+        margin-bottom: 15px;
+      }
+
+      .feature-description {
+        color: var(--text-gray);
+        line-height: 1.6;
+        margin-bottom: 20px;
+      }
+
+      .feature-link {
+        display: inline-block;
+        padding: 10px 25px;
+        background: transparent;
+        border: 2px solid var(--marvel-red);
+        color: var(--marvel-red);
+        text-decoration: none;
+        border-radius: 20px;
+        font-family: 'Bebas Neue', cursive;
+        letter-spacing: 1px;
+        transition: all 0.3s ease;
+      }
+
+      .feature-link:hover {
+        background: var(--marvel-red);
+        color: var(--text-light);
+      }
+
+      .stats-section {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 30px;
+        margin: 60px 0;
+        text-align: center;
+      }
+
+      .stat-box {
+        padding: 30px;
+        background: rgba(237, 29, 36, 0.1);
+        border: 2px solid rgba(237, 29, 36, 0.3);
+        border-radius: 10px;
+      }
+
+      .stat-number {
+        font-family: 'Bebas Neue', cursive;
+        font-size: 48px;
+        color: var(--marvel-red);
+        letter-spacing: 2px;
+      }
+
+      .stat-label {
+        color: var(--text-gray);
+        font-size: 16px;
+        margin-top: 10px;
+      }
+
+      @media (max-width: 768px) {
+        .hero-title {
+          font-size: 42px;
+        }
+
+        .hero-subtitle {
+          font-size: 18px;
+        }
+
+        .cta-buttons {
+          flex-direction: column;
+          width: 100%;
+        }
+
+        .cta-btn {
+          width: 100%;
+        }
+      }
+    </style>
   </head>
   <body>
-    <h1>Ejercicio de Scope en JavaScript</h1>
-    <p>Abre la consola para ver los resultados.</p>
-    <script src="script.js"></script>
+    <div class="overlay" id="overlay"></div>
+    
+    <header>
+      <div class="logo">
+        <img src="img/logo.png" alt="Marvel Logo">
+        <h1>HEROES DATABASE</h1>
+      </div>
+      <div class="hamburger" id="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </header>
+
+    <nav class="nav-menu" id="navMenu">
+      <ul>
+        <li><a href="index.html">🏠 INICIO</a></li>
+        <li><a href="heroes.html">🦸 HÉROES</a></li>
+        <li><a href="peliculas.html">🎬 PELÍCULAS</a></li>
+        <li><a href="historias.html">📖 HISTORIAS</a></li>
+        <li><a href="comparador.html">⚔️ COMPARADOR</a></li>
+        <li><a href="galeria.html">🖼️ GALERÍA</a></li>
+        <li><a href="quiz.html">🎮 QUIZ</a></li>
+      </ul>
+    </nav>
+
+    <div class="container">
+      <!-- Hero Section -->
+      <section class="hero-section">
+        <img src="img/logo.png" alt="Marvel Logo" class="hero-logo">
+        <h1 class="hero-title">HEROES DATABASE</h1>
+        <p class="hero-subtitle">Explora el Universo Cinematográfico de Marvel</p>
+        
+        <div class="cta-buttons">
+          <a href="heroes.html" class="cta-btn">EXPLORAR HÉROES</a>
+          <a href="peliculas.html" class="cta-btn cta-btn-secondary">VER PELÍCULAS</a>
+        </div>
+      </section>
+
+      <!-- Stats Section -->
+      <div class="stats-section">
+        <div class="stat-box">
+          <div class="stat-number">12+</div>
+          <div class="stat-label">SUPERHÉROES</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-number">33+</div>
+          <div class="stat-label">PELÍCULAS MCU</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-number">80+</div>
+          <div class="stat-label">AÑOS DE HISTORIA</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-number">∞</div>
+          <div class="stat-label">AVENTURAS</div>
+        </div>
+      </div>
+
+      <h2 class="section-header">EXPLORA EL UNIVERSO MARVEL</h2>
+
+      <!-- Features Grid -->
+      <div class="features-grid">
+        <!-- Héroes -->
+        <div class="feature-card fade-in">
+          <div class="feature-icon">🦸</div>
+          <h3 class="feature-title">BASE DE HÉROES</h3>
+          <p class="feature-description">
+            Descubre información detallada de 12+ superhéroes. Poderes, 
+            características, personalidades y más.
+          </p>
+          <a href="heroes.html" class="feature-link">EXPLORAR →</a>
+        </div>
+
+        <!-- Películas -->
+        <div class="feature-card fade-in delay-1">
+          <div class="feature-icon">🎬</div>
+          <h3 class="feature-title">PELÍCULAS MCU</h3>
+          <p class="feature-description">
+            Timeline completo del MCU con tráilers, sinopsis y toda la 
+            información de cada película.
+          </p>
+          <a href="peliculas.html" class="feature-link">VER PELÍCULAS →</a>
+        </div>
+
+        <!-- Historias -->
+        <div class="feature-card fade-in delay-2">
+          <div class="feature-icon">📖</div>
+          <h3 class="feature-title">ARCOS ÉPICOS</h3>
+          <p class="feature-description">
+            Análisis profundo de las historias más memorables: Infinity Saga, 
+            Civil War, orígenes y más.
+          </p>
+          <a href="historias.html" class="feature-link">LEER HISTORIAS →</a>
+        </div>
+
+        <!-- Comparador -->
+        <div class="feature-card fade-in delay-3">
+          <div class="feature-icon">⚔️</div>
+          <h3 class="feature-title">COMPARADOR</h3>
+          <p class="feature-description">
+            Compara las estadísticas de tus héroes favoritos. Fuerza, 
+            velocidad, inteligencia y más.
+          </p>
+          <a href="comparador.html" class="feature-link">COMPARAR →</a>
+        </div>
+
+        <!-- Galería -->
+        <div class="feature-card fade-in delay-4">
+          <div class="feature-icon">🖼️</div>
+          <h3 class="feature-title">GALERÍA</h3>
+          <p class="feature-description">
+            Explora imágenes épicas de héroes, películas, concept art y 
+            wallpapers HD del universo Marvel.
+          </p>
+          <a href="galeria.html" class="feature-link">VER GALERÍA →</a>
+        </div>
+
+        <!-- Quiz -->
+        <div class="feature-card fade-in delay-5">
+          <div class="feature-icon">🎮</div>
+          <h3 class="feature-title">QUIZ INTERACTIVO</h3>
+          <p class="feature-description">
+            ¿Qué héroe de Marvel eres? Responde el quiz y descubre tu 
+            personalidad heroica.
+          </p>
+          <a href="quiz.html" class="feature-link">HACER QUIZ →</a>
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <div style="text-align: center; margin: 60px 0 40px; padding-top: 40px; border-top: 2px solid rgba(237, 29, 36, 0.3);">
+        <p style="color: #666; font-size: 14px;">
+          © 2025 Marvel Heroes Database | Proyecto Educativo de Programación Web<br>
+          Marvel y todos los personajes relacionados son propiedad de Marvel Entertainment, LLC.
+        </p>
+      </div>
+    </div>
+
+    <script src="js/menu.js"></script>
+    <script>
+      // Animaciones de entrada para las tarjetas
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: "0px 0px -100px 0px"
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.style.opacity = "1";
+            entry.target.style.transform = "translateY(0)";
+          }
+        });
+      }, observerOptions);
+
+      document.querySelectorAll(".feature-card").forEach(card => {
+        card.style.opacity = "0";
+        card.style.transform = "translateY(50px)";
+        card.style.transition = "opacity 0.6s ease, transform 0.6s ease";
+        observer.observe(card);
+      });
+    </script>
   </body>
 </html>

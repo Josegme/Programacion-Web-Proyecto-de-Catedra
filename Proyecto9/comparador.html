@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MARVEL STUDIOS | Comparador de Héroes</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto+Condensed:wght@400;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <style>
+      .comparator-container {
+        display: grid;
+        grid-template-columns: 1fr auto 1fr;
+        gap: 30px;
+        margin: 40px 0;
+        align-items: start;
+      }
+
+      .hero-selector {
+        background: linear-gradient(145deg, rgba(0,0,0,0.95) 0%, rgba(26,0,0,0.95) 100%);
+        border: 2px solid rgba(237, 29, 36, 0.5);
+        border-radius: 15px;
+        padding: 30px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      }
+
+      .selector-title {
+        font-family: 'Bebas Neue', cursive;
+        font-size: 24px;
+        color: var(--marvel-red);
+        margin-bottom: 20px;
+        text-align: center;
+        letter-spacing: 2px;
+      }
+
+      .hero-select {
+        width: 100%;
+        padding: 15px;
+        background: rgba(0, 0, 0, 0.7);
+        border: 2px solid var(--marvel-red);
+        border-radius: 10px;
+        color: var(--text-light);
+        font-family: 'Roboto Condensed', sans-serif;
+        font-size: 16px;
+        margin-bottom: 20px;
+        cursor: pointer;
+      }
+
+      .hero-select:focus {
+        outline: none;
+        box-shadow: 0 0 20px rgba(237, 29, 36, 0.6);
+      }
+
+      .hero-preview {
+        text-align: center;
+        margin-top: 20px;
+      }
+
+      .hero-preview img {
+        width: 100%;
+        max-width: 300px;
+        height: 300px;
+        object-fit: cover;
+        border-radius: 10px;
+        border: 3px solid var(--marvel-red);
+        box-shadow: 0 10px 30px rgba(237, 29, 36, 0.5);
+      }
+
+      .hero-preview h3 {
+        font-family: 'Bebas Neue', cursive;
+        font-size: 32px;
+        color: var(--marvel-red);
+        margin-top: 15px;
+        letter-spacing: 2px;
+      }
+
+      .vs-divider {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+      }
+
+      .vs-badge {
+        width: 100px;
+        height: 100px;
+        background: linear-gradient(135deg, var(--marvel-red) 0%, #ff4444 100%);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: 'Bebas Neue', cursive;
+        font-size: 48px;
+        color: var(--text-light);
+        letter-spacing: 2px;
+        box-shadow: 0 10px 40px rgba(237, 29, 36, 0.6);
+        animation: pulse 2s ease infinite;
+      }
+
+      .stats-comparison {
+        margin-top: 40px;
+        background: linear-gradient(145deg, rgba(0,0,0,0.95) 0%, rgba(26,0,0,0.95) 100%);
+        border: 2px solid rgba(237, 29, 36, 0.5);
+        border-radius: 15px;
+        padding: 30px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      }
+
+      .stats-title {
+        font-family: 'Bebas Neue', cursive;
+        font-size: 32px;
+        color: var(--marvel-red);
+        text-align: center;
+        margin-bottom: 30px;
+        letter-spacing: 3px;
+      }
+
+      .stat-row {
+        display: grid;
+        grid-template-columns: 1fr auto 1fr;
+        gap: 20px;
+        align-items: center;
+        margin-bottom: 25px;
+      }
+
+      .stat-label {
+        text-align: center;
+        font-family: 'Bebas Neue', cursive;
+        font-size: 18px;
+        color: var(--text-light);
+        letter-spacing: 1px;
+      }
+
+      .stat-bar-container {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .stat-bar {
+        height: 30px;
+        background: rgba(237, 29, 36, 0.3);
+        border-radius: 15px;
+        overflow: hidden;
+        flex: 1;
+        border: 1px solid rgba(237, 29, 36, 0.5);
+      }
+
+      .stat-fill {
+        height: 100%;
+        background: linear-gradient(90deg, var(--marvel-red) 0%, #ff4444 100%);
+        transition: width 1s ease;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        padding-right: 10px;
+        color: var(--text-light);
+        font-weight: 700;
+        font-size: 14px;
+      }
+
+      .stat-value {
+        font-family: 'Bebas Neue', cursive;
+        font-size: 20px;
+        color: var(--marvel-red);
+        min-width: 40px;
+        text-align: center;
+      }
+
+      .winner-badge {
+        position: absolute;
+        top: -10px;
+        right: -10px;
+        background: gold;
+        color: #000;
+        padding: 5px 15px;
+        border-radius: 20px;
+        font-family: 'Bebas Neue', cursive;
+        font-size: 14px;
+        box-shadow: 0 5px 15px rgba(255, 215, 0, 0.5);
+        animation: bounce 1s ease infinite;
+      }
+
+      @media (max-width: 1024px) {
+        .comparator-container {
+          grid-template-columns: 1fr;
+        }
+
+        .vs-divider {
+          order: 2;
+        }
+
+        .vs-badge {
+          width: 80px;
+          height: 80px;
+          font-size: 36px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="overlay" id="overlay"></div>
+    
+    <header>
+      <div class="logo">
+        <img src="img/logo.png" alt="Marvel Logo">
+        <h1>COMPARADOR DE HÉROES</h1>
+      </div>
+      <div class="hamburger" id="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </header>
+
+    <nav class="nav-menu" id="navMenu">
+      <ul>
+        <li><a href="index.html">🏠 INICIO</a></li>
+        <li><a href="heroes.html">🦸 HÉROES</a></li>
+        <li><a href="peliculas.html">🎬 PELÍCULAS</a></li>
+        <li><a href="historias.html">📖 HISTORIAS</a></li>
+        <li><a href="comparador.html">⚔️ COMPARADOR</a></li>
+        <li><a href="galeria.html">🖼️ GALERÍA</a></li>
+        <li><a href="quiz.html">🎮 QUIZ</a></li>
+      </ul>
+    </nav>
+
+    <div class="container">
+      <h1 class="section-header">COMPARADOR DE PODERES</h1>
+      <p style="text-align: center; color: #ccc; margin-bottom: 30px;">
+        Compara las estadísticas de tus héroes favoritos
+      </p>
+
+      <div class="comparator-container">
+        <!-- Héroe 1 -->
+        <div class="hero-selector">
+          <h2 class="selector-title">HÉROE 1</h2>
+          <select class="hero-select" id="hero1Select">
+            <option value="">Selecciona un héroe...</option>
+            <option value="ironman">Iron Man</option>
+            <option value="spiderman">Spider-Man</option>
+            <option value="captainamerica">Captain America</option>
+            <option value="thor">Thor</option>
+            <option value="hulk">Hulk</option>
+            <option value="blackwidow">Black Widow</option>
+            <option value="blackpanther">Black Panther</option>
+            <option value="doctorstrange">Doctor Strange</option>
+            <option value="wolverine">Wolverine</option>
+            <option value="storm">Storm</option>
+            <option value="cyclops">Cyclops</option>
+            <option value="starlord">Star-Lord</option>
+          </select>
+          <div class="hero-preview" id="hero1Preview">
+            <img src="img/fondo.jpg" alt="Hero 1" id="hero1Image">
+            <h3 id="hero1Name">?</h3>
+          </div>
+        </div>
+
+        <!-- VS Badge -->
+        <div class="vs-divider">
+          <div class="vs-badge">VS</div>
+        </div>
+
+        <!-- Héroe 2 -->
+        <div class="hero-selector">
+          <h2 class="selector-title">HÉROE 2</h2>
+          <select class="hero-select" id="hero2Select">
+            <option value="">Selecciona un héroe...</option>
+            <option value="ironman">Iron Man</option>
+            <option value="spiderman">Spider-Man</option>
+            <option value="captainamerica">Captain America</option>
+            <option value="thor">Thor</option>
+            <option value="hulk">Hulk</option>
+            <option value="blackwidow">Black Widow</option>
+            <option value="blackpanther">Black Panther</option>
+            <option value="doctorstrange">Doctor Strange</option>
+            <option value="wolverine">Wolverine</option>
+            <option value="storm">Storm</option>
+            <option value="cyclops">Cyclops</option>
+            <option value="starlord">Star-Lord</option>
+          </select>
+          <div class="hero-preview" id="hero2Preview">
+            <img src="img/fondo.jpg" alt="Hero 2" id="hero2Image">
+            <h3 id="hero2Name">?</h3>
+          </div>
+        </div>
+      </div>
+
+      <!-- Comparación de Estadísticas -->
+      <div class="stats-comparison" id="statsComparison" style="display: none;">
+        <h2 class="stats-title">⚡ ANÁLISIS DE PODERES</h2>
+
+        <!-- Fuerza -->
+        <div class="stat-row">
+          <div class="stat-bar-container">
+            <span class="stat-value" id="hero1Strength">0</span>
+            <div class="stat-bar">
+              <div class="stat-fill" id="hero1StrengthBar" style="width: 0%"></div>
+            </div>
+          </div>
+          <div class="stat-label">💪 FUERZA</div>
+          <div class="stat-bar-container">
+            <div class="stat-bar">
+              <div class="stat-fill" id="hero2StrengthBar" style="width: 0%"></div>
+            </div>
+            <span class="stat-value" id="hero2Strength">0</span>
+          </div>
+        </div>
+
+        <!-- Velocidad -->
+        <div class="stat-row">
+          <div class="stat-bar-container">
+            <span class="stat-value" id="hero1Speed">0</span>
+            <div class="stat-bar">
+              <div class="stat-fill" id="hero1SpeedBar" style="width: 0%"></div>
+            </div>
+          </div>
+          <div class="stat-label">⚡ VELOCIDAD</div>
+          <div class="stat-bar-container">
+            <div class="stat-bar">
+              <div class="stat-fill" id="hero2SpeedBar" style="width: 0%"></div>
+            </div>
+            <span class="stat-value" id="hero2Speed">0</span>
+          </div>
+        </div>
+
+        <!-- Inteligencia -->
+        <div class="stat-row">
+          <div class="stat-bar-container">
+            <span class="stat-value" id="hero1Intelligence">0</span>
+            <div class="stat-bar">
+              <div class="stat-fill" id="hero1IntelligenceBar" style="width: 0%"></div>
+            </div>
+          </div>
+          <div class="stat-label">🧠 INTELIGENCIA</div>
+          <div class="stat-bar-container">
+            <div class="stat-bar">
+              <div class="stat-fill" id="hero2IntelligenceBar" style="width: 0%"></div>
+            </div>
+            <span class="stat-value" id="hero2Intelligence">0</span>
+          </div>
+        </div>
+
+        <!-- Resistencia -->
+        <div class="stat-row">
+          <div class="stat-bar-container">
+            <span class="stat-value" id="hero1Durability">0</span>
+            <div class="stat-bar">
+              <div class="stat-fill" id="hero1DurabilityBar" style="width: 0%"></div>
+            </div>
+          </div>
+          <div class="stat-label">🛡️ RESISTENCIA</div>
+          <div class="stat-bar-container">
+            <div class="stat-bar">
+              <div class="stat-fill" id="hero2DurabilityBar" style="width: 0%"></div>
+            </div>
+            <span class="stat-value" id="hero2Durability">0</span>
+          </div>
+        </div>
+
+        <!-- Energía -->
+        <div class="stat-row">
+          <div class="stat-bar-container">
+            <span class="stat-value" id="hero1Energy">0</span>
+            <div class="stat-bar">
+              <div class="stat-fill" id="hero1EnergyBar" style="width: 0%"></div>
+            </div>
+          </div>
+          <div class="stat-label">⚡ PROYECCIÓN ENERGÍA</div>
+          <div class="stat-bar-container">
+            <div class="stat-bar">
+              <div class="stat-fill" id="hero2EnergyBar" style="width: 0%"></div>
+            </div>
+            <span class="stat-value" id="hero2Energy">0</span>
+          </div>
+        </div>
+
+        <!-- Combate -->
+        <div class="stat-row">
+          <div class="stat-bar-container">
+            <span class="stat-value" id="hero1Combat">0</span>
+            <div class="stat-bar">
+              <div class="stat-fill" id="hero1CombatBar" style="width: 0%"></div>
+            </div>
+          </div>
+          <div class="stat-label">🥋 HABILIDAD COMBATE</div>
+          <div class="stat-bar-container">
+            <div class="stat-bar">
+              <div class="stat-fill" id="hero2CombatBar" style="width: 0%"></div>
+            </div>
+            <span class="stat-value" id="hero2Combat">0</span>
+          </div>
+        </div>
+
+        <!-- Puntuación Total -->
+        <div class="stat-row" style="margin-top: 40px; padding-top: 30px; border-top: 2px solid rgba(237, 29, 36, 0.5);">
+          <div style="text-align: center;">
+            <div class="stat-value" style="font-size: 32px;" id="hero1Total">0</div>
+            <div style="color: #ccc; font-size: 14px; margin-top: 5px;">PUNTOS TOTALES</div>
+          </div>
+          <div class="stat-label" style="font-size: 24px;">🏆 TOTAL</div>
+          <div style="text-align: center;">
+            <div class="stat-value" style="font-size: 32px;" id="hero2Total">0</div>
+            <div style="color: #ccc; font-size: 14px; margin-top: 5px;">PUNTOS TOTALES</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="js/menu.js"></script>
+    <script>
+      // Base de datos de estadísticas de héroes
+      const heroStats = {
+        ironman: { name: "Iron Man", img: "img/heroes/ironman.jpg", strength: 85, speed: 70, intelligence: 100, durability: 85, energy: 100, combat: 75 },
+        spiderman: { name: "Spider-Man", img: "img/heroes/spiderman.jpg", strength: 80, speed: 90, intelligence: 90, durability: 75, energy: 30, combat: 85 },
+        captainamerica: { name: "Captain America", img: "img/heroes/captainamerica.jpg", strength: 75, speed: 70, intelligence: 85, durability: 80, energy: 20, combat: 100 },
+        thor: { name: "Thor", img: "img/heroes/thor.jpg", strength: 100, speed: 85, intelligence: 70, durability: 100, energy: 100, combat: 90 },
+        hulk: { name: "Hulk", img: "img/heroes/hulk.jpg", strength: 100, speed: 75, intelligence: 60, durability: 100, energy: 50, combat: 70 },
+        blackwidow: { name: "Black Widow", img: "img/heroes/blackwidow.jpg", strength: 50, speed: 85, intelligence: 90, durability: 60, energy: 20, combat: 100 },
+        blackpanther: { name: "Black Panther", img: "img/heroes/blackpanther.jpg", strength: 75, speed: 85, intelligence: 95, durability: 80, energy: 30, combat: 95 },
+        doctorstrange: { name: "Doctor Strange", img: "img/heroes/doctorstrange.jpg", strength: 40, speed: 60, intelligence: 100, durability: 70, energy: 100, combat: 80 },
+        wolverine: { name: "Wolverine", img: "img/heroes/wolverine.jpg", strength: 85, speed: 80, intelligence: 65, durability: 100, energy: 30, combat: 100 },
+        storm: { name: "Storm", img: "img/heroes/storm.jpg", strength: 50, speed: 75, intelligence: 85, durability: 70, energy: 95, combat: 80 },
+        cyclops: { name: "Cyclops", img: "img/heroes/cyclops.jpg", strength: 60, speed: 70, intelligence: 90, durability: 65, energy: 95, combat: 85 },
+        starlord: { name: "Star-Lord", img: "img/heroes/starlord.jpg", strength: 65, speed: 75, intelligence: 85, durability: 70, energy: 60, combat: 80 }
+      };
+
+      const hero1Select = document.getElementById('hero1Select');
+      const hero2Select = document.getElementById('hero2Select');
+      const statsComparison = document.getElementById('statsComparison');
+
+      hero1Select.addEventListener('change', updateComparison);
+      hero2Select.addEventListener('change', updateComparison);
+
+      function updateComparison() {
+        const hero1 = hero1Select.value;
+        const hero2 = hero2Select.value;
+
+        if (hero1) {
+          const h1 = heroStats[hero1];
+          document.getElementById('hero1Image').src = h1.img;
+          document.getElementById('hero1Name').textContent = h1.name;
+        }
+
+        if (hero2) {
+          const h2 = heroStats[hero2];
+          document.getElementById('hero2Image').src = h2.img;
+          document.getElementById('hero2Name').textContent = h2.name;
+        }
+
+        if (hero1 && hero2) {
+          statsComparison.style.display = 'block';
+          compareHeroes(heroStats[hero1], heroStats[hero2]);
+        }
+      }
+
+      function compareHeroes(h1, h2) {
+        const stats = ['strength', 'speed', 'intelligence', 'durability', 'energy', 'combat'];
+        
+        stats.forEach(stat => {
+          updateStat(stat, h1[stat], h2[stat]);
+        });
+
+        const total1 = stats.reduce((sum, stat) => sum + h1[stat], 0);
+        const total2 = stats.reduce((sum, stat) => sum + h2[stat], 0);
+
+        document.getElementById('hero1Total').textContent = total1;
+        document.getElementById('hero2Total').textContent = total2;
+      }
+
+      function updateStat(stat, value1, value2) {
+        const statName = stat.charAt(0).toUpperCase() + stat.slice(1);
+        
+        document.getElementById(`hero1${statName}`).textContent = value1;
+        document.getElementById(`hero2${statName}`).textContent = value2;
+        
+        setTimeout(() => {
+          document.getElementById(`hero1${statName}Bar`).style.width = value1 + '%';
+          document.getElementById(`hero2${statName}Bar`).style.width = value2 + '%';
+        }, 100);
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MARVEL STUDIOS | Películas MCU</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto+Condensed:wght@400;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/peliculas.css">
+    <link rel="stylesheet" href="css/animations.css">
+  </head>
+  <body>
+    <div class="overlay" id="overlay"></div>
+    
+    <header>
+      <div class="logo">
+        <img src="img/logo.png" alt="Marvel Logo">
+        <h1>PELÍCULAS MCU</h1>
+      </div>
+      <div class="hamburger" id="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </header>
+
+    <nav class="nav-menu" id="navMenu">
+      <ul>
+        <li><a href="index.html">🏠 INICIO</a></li>
+        <li><a href="heroes.html">🦸 HÉROES</a></li>
+        <li><a href="peliculas.html">🎬 PELÍCULAS</a></li>
+        <li><a href="historias.html">📖 HISTORIAS</a></li>
+        <li><a href="comparador.html">⚔️ COMPARADOR</a></li>
+        <li><a href="galeria.html">🖼️ GALERÍA</a></li>
+        <li><a href="quiz.html">🎮 QUIZ</a></li>
+      </ul>
+    </nav>
+
+    <div class="container">
+      <h1 class="section-header">MARVEL CINEMATIC UNIVERSE</h1>
+      <p style="text-align: center; color: #ccc; margin-bottom: 30px;">
+        Explora el universo cinematográfico más épico de todos los tiempos
+      </p>
+
+      <!-- Timeline de Fases -->
+      <div class="timeline-phases">
+        <button class="phase-btn active" data-phase="todas">TODAS</button>
+        <button class="phase-btn" data-phase="fase1">FASE 1</button>
+        <button class="phase-btn" data-phase="fase2">FASE 2</button>
+        <button class="phase-btn" data-phase="fase3">FASE 3</button>
+        <button class="phase-btn" data-phase="fase4">FASE 4</button>
+        <button class="phase-btn" data-phase="fase5">FASE 5</button>
+      </div>
+
+      <!-- Grid de Películas -->
+      <div class="movies-grid">
+        <!-- FASE 1 -->
+        <div class="movie-card" data-phase="fase1">
+          <div class="movie-poster">
+            <img src="img/movies/ironman.jpg" alt="Iron Man">
+            <span class="phase-badge">FASE 1</span>
+            <span class="movie-rating">⭐ 7.9</span>
+          </div>
+          <div class="movie-info">
+            <h2 class="movie-title">IRON MAN</h2>
+            <p class="movie-year">📅 2008</p>
+            <p class="movie-director">🎬 Jon Favreau</p>
+            <p class="movie-synopsis">
+              Tony Stark, genio multimillonario, construye una armadura tecnológica 
+              para escapar del cautiverio y se convierte en Iron Man.
+            </p>
+            <div class="movie-actions">
+              <button class="trailer-btn" onclick="openTrailer('2Tr0ESmzaLA')">▶ VER TRÁILER</button>
+              <button class="info-btn">MÁS INFO</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="movie-card" data-phase="fase1">
+          <div class="movie-poster">
+            <img src="img/movies/hulk.jpg" alt="The Incredible Hulk">
+            <span class="phase-badge">FASE 1</span>
+            <span class="movie-rating">⭐ 6.7</span>
+          </div>
+          <div class="movie-info">
+            <h2 class="movie-title">THE INCREDIBLE HULK</h2>
+            <p class="movie-year">📅 2008</p>
+            <p class="movie-director">🎬 Louis Leterrier</p>
+            <p class="movie-synopsis">
+              Bruce Banner busca una cura para su transformación en Hulk mientras 
+              es perseguido por el ejército y un enemigo aterrador.
+            </p>
+            <div class="movie-actions">
+              <button class="trailer-btn" onclick="openTrailer('xbqNb2PFKKA')">▶ VER TRÁILER</button>
+              <button class="info-btn">MÁS INFO</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="movie-card" data-phase="fase1">
+          <div class="movie-poster">
+            <img src="img/movies/ironman2.jpg" alt="Iron Man 2">
+            <span class="phase-badge">FASE 1</span>
+            <span class="movie-rating">⭐ 7.0</span>
+          </div>
+          <div class="movie-info">
+            <h2 class="movie-title">IRON MAN 2</h2>
+            <p class="movie-year">📅 2010</p>
+            <p class="movie-director">🎬 Jon Favreau</p>
+            <p class="movie-synopsis">
+              Tony Stark enfrenta presión del gobierno y nuevos enemigos mientras 
+              lidia con los efectos del reactor arc en su pecho.
+            </p>
+            <div class="movie-actions">
+              <button class="trailer-btn" onclick="openTrailer('wKtcmiifycU')">▶ VER TRÁILER</button>
+              <button class="info-btn">MÁS INFO</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="movie-card" data-phase="fase1">
+          <div class="movie-poster">
+            <img src="img/movies/thor.jpg" alt="Thor">
+            <span class="phase-badge">FASE 1</span>
+            <span class="movie-rating">⭐ 7.0</span>
+          </div>
+          <div class="movie-info">
+            <h2 class="movie-title">THOR</h2>
+            <p class="movie-year">📅 2011</p>
+            <p class="movie-director">🎬 Kenneth Branagh</p>
+            <p class="movie-synopsis">
+              El poderoso Thor es desterrado a la Tierra desde Asgard y debe aprender 
+              humildad para recuperar su martillo Mjolnir.
+            </p>
+            <div class="movie-actions">
+              <button class="trailer-btn" onclick="openTrailer('JOddp-nlNvQ')">▶ VER TRÁILER</button>
+              <button class="info-btn">MÁS INFO</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="movie-card" data-phase="fase1">
+          <div class="movie-poster">
+            <img src="img/movies/captainamerica.jpg" alt="Captain America">
+            <span class="phase-badge">FASE 1</span>
+            <span class="movie-rating">⭐ 6.9</span>
+          </div>
+          <div class="movie-info">
+            <h2 class="movie-title">CAPTAIN AMERICA: THE FIRST AVENGER</h2>
+            <p class="movie-year">📅 2011</p>
+            <p class="movie-director">🎬 Joe Johnston</p>
+            <p class="movie-synopsis">
+              Steve Rogers se transforma en el Capitán América durante la Segunda 
+              Guerra Mundial para combatir a Red Skull y Hydra.
+            </p>
+            <div class="movie-actions">
+              <button class="trailer-btn" onclick="openTrailer('JerVrbLldXw')">▶ VER TRÁILER</button>
+              <button class="info-btn">MÁS INFO</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="movie-card" data-phase="fase1">
+          <div class="movie-poster">
+            <img src="img/movies/avengers.jpg" alt="The Avengers">
+            <span class="phase-badge">FASE 1</span>
+            <span class="movie-rating">⭐ 8.0</span>
+          </div>
+          <div class="movie-info">
+            <h2 class="movie-title">THE AVENGERS</h2>
+            <p class="movie-year">📅 2012</p>
+            <p class="movie-director">🎬 Joss Whedon</p>
+            <p class="movie-synopsis">
+              Los héroes más poderosos de la Tierra se unen por primera vez para 
+              detener la invasión de Loki y su ejército Chitauri.
+            </p>
+            <div class="movie-actions">
+              <button class="trailer-btn" onclick="openTrailer('eOrNdBpGMv8')">▶ VER TRÁILER</button>
+              <button class="info-btn">MÁS INFO</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- FASE 2 -->
+        <div class="movie-card" data-phase="fase2">
+          <div class="movie-poster">
+            <img src="img/movies/ironman3.jpg" alt="Iron Man 3">
+            <span class="phase-badge">FASE 2</span>
+            <span class="movie-rating">⭐ 7.1</span>
+          </div>
+          <div class="movie-info">
+            <h2 class="movie-title">IRON MAN 3</h2>
+            <p class="movie-year">📅 2013</p>
+            <p class="movie-director">🎬 Shane Black</p>
+            <p class="movie-synopsis">
+              Tony Stark enfrenta un poderoso enemigo llamado Mandarín mientras 
+              lidia con ansiedad tras los eventos de Nueva York.
+            </p>
+            <div class="movie-actions">
+              <button class="trailer-btn" onclick="openTrailer('Ke1Y3P9D0Bc')">▶ VER TRÁILER</button>
+              <button class="info-btn">MÁS INFO</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="movie-card" data-phase="fase2">
+          <div class="movie-poster">
+            <img src="img/movies/thor2.jpg" alt="Thor: The Dark World">
+            <span class="phase-badge">FASE 2</span>
+            <span class="movie-rating">⭐ 6.8</span>
+          </div>
+          <div class="movie-info">
+            <h2 class="movie-title">THOR: THE DARK WORLD</h2>
+            <p class="movie-year">📅 2013</p>
+            <p class="movie-director">🎬 Alan Taylor</p>
+            <p class="movie-synopsis">
+              Thor debe aliarse con Loki para detener a Malekith y los Elfos Oscuros 
+              que buscan sumir al universo en la oscuridad.
+            </p>
+            <div class="movie-actions">
+              <button class="trailer-btn" onclick="openTrailer('npvJ9FTgZbM')">▶ VER TRÁILER</button>
+              <button class="info-btn">MÁS INFO</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="movie-card" data-phase="fase2">
+          <div class="movie-poster">
+            <img src="img/movies/wintersoldier.jpg" alt="Winter Soldier">
+            <span class="phase-badge">FASE 2</span>
+            <span class="movie-rating">⭐ 7.7</span>
+          </div>
+          <div class="movie-info">
+            <h2 class="movie-title">CAPTAIN AMERICA: THE WINTER SOLDIER</h2>
+            <p class="movie-year">📅 2014</p>
+            <p class="movie-director">🎬 Russo Brothers</p>
+            <p class="movie-synopsis">
+              Steve Rogers descubre una conspiración dentro de S.H.I.E.L.D. y 
+              enfrenta a un misterioso asesino de su pasado.
+            </p>
+            <div class="movie-actions">
+              <button class="trailer-btn" onclick="openTrailer('7SlILk2WMTI')">▶ VER TRÁILER</button>
+              <button class="info-btn">MÁS INFO</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="movie-card" data-phase="fase2">
+          <div class="movie-poster">
+            <img src="img/movies/guardians.jpg" alt="Guardians of the Galaxy">
+            <span class="phase-badge">FASE 2</span>
+            <span class="movie-rating">⭐ 8.0</span>
+          </div>
+          <div class="movie-info">
+            <h2 class="movie-title">GUARDIANS OF THE GALAXY</h2>
+            <p class="movie-year">📅 2014</p>
+            <p class="movie-director">🎬 James Gunn</p>
+            <p class="movie-synopsis">
+              Un grupo de inadaptados cósmicos debe unirse para proteger una 
+              misteriosa orbe del fanático Ronan el Acusador.
+            </p>
+            <div class="movie-actions">
+              <button class="trailer-btn" onclick="openTrailer('d96cjJhvlMA')">▶ VER TRÁILER</button>
+              <button class="info-btn">MÁS INFO</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="movie-card" data-phase="fase2">
+          <div class="movie-poster">
+            <img src="img/movies/ultron.jpg" alt="Age of Ultron">
+            <span class="phase-badge">FASE 2</span>
+            <span class="movie-rating">⭐ 7.3</span>
+          </div>
+          <div class="movie-info">
+            <h2 class="movie-title">AVENGERS: AGE OF ULTRON</h2>
+            <p class="movie-year">📅 2015</p>
+            <p class="movie-director">🎬 Joss Whedon</p>
+            <p class="movie-synopsis">
+              Los Avengers enfrentan a Ultron, una inteligencia artificial que 
+              amenaza con extinguir a la humanidad.
+            </p>
+            <div class="movie-actions">
+              <button class="trailer-btn" onclick="openTrailer('tmeOjFno6Do')">▶ VER TRÁILER</button>
+              <button class="info-btn">MÁS INFO</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="movie-card" data-phase="fase2">
+          <div class="movie-poster">
+            <img src="img/movies/antman.jpg" alt="Ant-Man">
+            <span class="phase-badge">FASE 2</span>
+            <span class="movie-rating">⭐ 7.3</span>
+          </div>
+          <div class="movie-info">
+            <h2 class="movie-title">ANT-MAN</h2>
+            <p class="movie-year">📅 2015</p>
+            <p class="movie-director">🎬 Peyton Reed</p>
+            <p class="movie-synopsis">
+              Scott Lang debe convertirse en Ant-Man y dominar el poder de encogerse 
+              para ayudar a su mentor en una peligrosa misión.
+            </p>
+            <div class="movie-actions">
+              <button class="trailer-btn" onclick="openTrailer('pWdKf3MneyI')">▶ VER TRÁILER</button>
+              <button class="info-btn">MÁS INFO</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- FASE 3 -->
+        <div class="movie-card" data-phase="fase3">
+          <div class="movie-poster">
+            <img src="img/movies/civilwar.jpg" alt="Civil War">
+            <span class="phase-badge">FASE 3</span>
+            <span class="movie-rating">⭐ 7.8</span>
+          </div>
+          <div class="movie-info">
+            <h2 class="movie-title">CAPTAIN AMERICA: CIVIL WAR</h2>
+            <p class="movie-year">📅 2016</p>
+            <p class="movie-director">🎬 Russo Brothers</p>
+            <p class="movie-synopsis">
+              Los Avengers se dividen en dos bandos liderados por Iron Man y 
+              Capitán América por diferencias ideológicas.
+            </p>
+            <div class="movie-actions">
+              <button class="trailer-btn" onclick="openTrailer('dKrVegVI0Us')">▶ VER TRÁILER</button>
+              <button class="info-btn">MÁS INFO</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="movie-card" data-phase="fase3">
+          <div class="movie-poster">
+            <img src="img/movies/doctorstrange.jpg" alt="Doctor Strange">
+            <span class="phase-badge">FASE 3</span>
+            <span class="movie-rating">⭐ 7.5</span>
+          </div>
+          <div class="movie-info">
+            <h2 class="movie-title">DOCTOR STRANGE</h2>
+            <p class="movie-year">📅 2016</p>
+            <p class="movie-director">🎬 Scott Derrickson</p>
+            <p class="movie-synopsis">
+              Un cirujano brillante descubre el mundo de la magia y las artes 
+              místicas tras un devastador accidente automovilístico.
+            </p>
+            <div class="movie-actions">
+              <button class="trailer-btn" onclick="openTrailer('aWzlQ2N6qqg')">▶ VER TRÁILER</button>
+              <button class="info-btn">MÁS INFO</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="movie-card" data-phase="fase3">
+          <div class="movie-poster">
+            <img src="img/movies/spiderman.jpg" alt="Spider-Man Homecoming">
+            <span class="phase-badge">FASE 3</span>
+            <span class="movie-rating">⭐ 7.4</span>
+          </div>
+          <div class="movie-info">
+            <h2 class="movie-title">SPIDER-MAN: HOMECOMING</h2>
+            <p class="movie-year">📅 2017</p>
+            <p class="movie-director">🎬 Jon Watts</p>
+            <p class="movie-synopsis">
+              Peter Parker equilibra su vida de estudiante con ser Spider-Man 
+              mientras enfrenta al Buitre.
+            </p>
+            <div class="movie-actions">
+              <button class="trailer-btn" onclick="openTrailer('39udgGPyYMg')">▶ VER TRÁILER</button>
+              <button class="info-btn">MÁS INFO</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="movie-card" data-phase="fase3">
+          <div class="movie-poster">
+            <img src="img/movies/blackpanther.jpg" alt="Black Panther">
+            <span class="phase-badge">FASE 3</span>
+            <span class="movie-rating">⭐ 7.3</span>
+          </div>
+          <div class="movie-info">
+            <h2 class="movie-title">BLACK PANTHER</h2>
+            <p class="movie-year">📅 2018</p>
+            <p class="movie-director">🎬 Ryan Coogler</p>
+            <p class="movie-synopsis">
+              T'Challa regresa a Wakanda para asumir el trono, pero enfrenta 
+              desafíos que ponen a prueba su reino y el mundo.
+            </p>
+            <div class="movie-actions">
+              <button class="trailer-btn" onclick="openTrailer('xjDjIWPwcPU')">▶ VER TRÁILER</button>
+              <button class="info-btn">MÁS INFO</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="movie-card" data-phase="fase3">
+          <div class="movie-poster">
+            <img src="img/movies/infinitywar.jpg" alt="Infinity War">
+            <span class="phase-badge">FASE 3</span>
+            <span class="movie-rating">⭐ 8.4</span>
+          </div>
+          <div class="movie-info">
+            <h2 class="movie-title">AVENGERS: INFINITY WAR</h2>
+            <p class="movie-year">📅 2018</p>
+            <p class="movie-director">🎬 Russo Brothers</p>
+            <p class="movie-synopsis">
+              Los Avengers se unen con los Guardianes de la Galaxia para detener 
+              a Thanos de conseguir las Gemas del Infinito.
+            </p>
+            <div class="movie-actions">
+              <button class="trailer-btn" onclick="openTrailer('6ZfuNTqbHE8')">▶ VER TRÁILER</button>
+              <button class="info-btn">MÁS INFO</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="movie-card" data-phase="fase3">
+          <div class="movie-poster">
+            <img src="img/movies/endgame.jpg" alt="Endgame">
+            <span class="phase-badge">FASE 3</span>
+            <span class="movie-rating">⭐ 8.4</span>
+          </div>
+          <div class="movie-info">
+            <h2 class="movie-title">AVENGERS: ENDGAME</h2>
+            <p class="movie-year">📅 2019</p>
+            <p class="movie-director">🎬 Russo Brothers</p>
+            <p class="movie-synopsis">
+              Los Avengers restantes idean un plan para deshacer las acciones de 
+              Thanos y restaurar el orden en el universo.
+            </p>
+            <div class="movie-actions">
+              <button class="trailer-btn" onclick="openTrailer('TcMBFSGVi1c')">▶ VER TRÁILER</button>
+              <button class="info-btn">MÁS INFO</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <p style="text-align: center; color: #666; margin-top: 40px; font-style: italic;">
+        💡 Nota: Agrega las imágenes de los pósters en la carpeta img/movies/ para ver las películas con sus pósters oficiales
+      </p>
+    </div>
+
+    <!-- Modal de Tráiler -->
+    <div class="trailer-modal" id="trailerModal">
+      <div class="trailer-content">
+        <button class="close-modal" onclick="closeTrailer()">✕</button>
+        <iframe id="trailerFrame" src="" allowfullscreen></iframe>
+      </div>
+    </div>
+
+    <script src="js/menu.js"></script>
+    <script src="js/scroll-animations.js"></script>
+    <script>
+      // Filtro por fases
+      const phaseButtons = document.querySelectorAll('.phase-btn');
+      const movieCards = document.querySelectorAll('.movie-card');
+
+      phaseButtons.forEach(button => {
+        button.addEventListener('click', () => {
+          phaseButtons.forEach(btn => btn.classList.remove('active'));
+          button.classList.add('active');
+          
+          const selectedPhase = button.getAttribute('data-phase');
+          
+          movieCards.forEach(card => {
+            if (selectedPhase === 'todas' || card.getAttribute('data-phase') === selectedPhase) {
+              card.classList.remove('hidden');
+            } else {
+              card.classList.add('hidden');
+            }
+          });
+        });
+      });
+
+      // Tráiler modal
+      function openTrailer(videoId) {
+        const modal = document.getElementById('trailerModal');
+        const frame = document.getElementById('trailerFrame');
+        frame.src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeTrailer() {
+        const modal = document.getElementById('trailerModal');
+        const frame = document.getElementById('trailerFrame');
+        frame.src = '';
+        modal.classList.remove('active');
+        document.body.style.overflow = 'auto';
+      }
+
+      // Cerrar con Escape
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+          closeTrailer();
+        }
+      });
+
+      // Cerrar al hacer click fuera
+      document.getElementById('trailerModal').addEventListener('click', (e) => {
+        if (e.target.id === 'trailerModal') {
+          closeTrailer();
+        }
+      });
+    </script>
+  </body>
+</html>

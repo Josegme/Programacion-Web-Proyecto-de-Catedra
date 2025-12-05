@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MARVEL STUDIOS | Quiz Interactivo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto+Condensed:wght@400;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <style>
+      .quiz-container {
+        max-width: 800px;
+        margin: 40px auto;
+        background: linear-gradient(145deg, rgba(0,0,0,0.95) 0%, rgba(26,0,0,0.95) 100%);
+        border: 2px solid rgba(237, 29, 36, 0.5);
+        border-radius: 15px;
+        padding: 40px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      }
+
+      .quiz-intro {
+        text-align: center;
+        margin-bottom: 40px;
+      }
+
+      .quiz-intro h2 {
+        font-family: 'Bebas Neue', cursive;
+        font-size: 36px;
+        color: var(--marvel-red);
+        margin-bottom: 20px;
+        letter-spacing: 3px;
+      }
+
+      .quiz-intro p {
+        color: var(--text-gray);
+        font-size: 18px;
+        line-height: 1.8;
+      }
+
+      .question-container {
+        display: none;
+      }
+
+      .question-container.active {
+        display: block;
+        animation: fadeIn 0.5s ease;
+      }
+
+      .question-number {
+        color: var(--marvel-red);
+        font-family: 'Bebas Neue', cursive;
+        font-size: 18px;
+        letter-spacing: 1px;
+        margin-bottom: 15px;
+      }
+
+      .question-text {
+        font-family: 'Bebas Neue', cursive;
+        font-size: 28px;
+        color: var(--text-light);
+        margin-bottom: 30px;
+        letter-spacing: 2px;
+      }
+
+      .options {
+        display: grid;
+        gap: 15px;
+        margin-bottom: 30px;
+      }
+
+      .option-btn {
+        padding: 20px;
+        background: rgba(0, 0, 0, 0.5);
+        border: 2px solid rgba(237, 29, 36, 0.3);
+        color: var(--text-light);
+        font-size: 16px;
+        text-align: left;
+        cursor: pointer;
+        border-radius: 10px;
+        transition: all 0.3s ease;
+      }
+
+      .option-btn:hover {
+        background: rgba(237, 29, 36, 0.2);
+        border-color: var(--marvel-red);
+        transform: translateX(10px);
+      }
+
+      .progress-bar-container {
+        background: rgba(0, 0, 0, 0.5);
+        height: 10px;
+        border-radius: 10px;
+        overflow: hidden;
+        margin-bottom: 30px;
+      }
+
+      .progress-bar-fill {
+        height: 100%;
+        background: linear-gradient(90deg, var(--marvel-red) 0%, #ff4444 100%);
+        transition: width 0.5s ease;
+      }
+
+      .quiz-result {
+        display: none;
+        text-align: center;
+        animation: scaleIn 0.5s ease;
+      }
+
+      .quiz-result.active {
+        display: block;
+      }
+
+      .result-hero-image {
+        width: 300px;
+        height: 300px;
+        object-fit: cover;
+        border-radius: 50%;
+        border: 5px solid var(--marvel-red);
+        margin: 30px auto;
+        box-shadow: 0 20px 60px rgba(237, 29, 36, 0.6);
+        animation: pulse 2s ease infinite;
+      }
+
+      .result-title {
+        font-family: 'Bebas Neue', cursive;
+        font-size: 48px;
+        color: var(--marvel-red);
+        margin-bottom: 20px;
+        letter-spacing: 4px;
+      }
+
+      .result-description {
+        color: var(--text-gray);
+        font-size: 18px;
+        line-height: 1.8;
+        max-width: 600px;
+        margin: 0 auto 30px;
+      }
+
+      .restart-btn {
+        padding: 15px 40px;
+        background: var(--marvel-red);
+        color: var(--text-light);
+        border: none;
+        border-radius: 30px;
+        font-family: 'Bebas Neue', cursive;
+        font-size: 20px;
+        letter-spacing: 2px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 5px 20px rgba(237, 29, 36, 0.5);
+      }
+
+      .restart-btn:hover {
+        background: #fff;
+        color: var(--marvel-red);
+        transform: translateY(-3px);
+        box-shadow: 0 8px 30px rgba(237, 29, 36, 0.7);
+      }
+
+      .start-btn {
+        padding: 15px 40px;
+        background: var(--marvel-red);
+        color: var(--text-light);
+        border: none;
+        border-radius: 30px;
+        font-family: 'Bebas Neue', cursive;
+        font-size: 20px;
+        letter-spacing: 2px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 5px 20px rgba(237, 29, 36, 0.5);
+      }
+
+      .start-btn:hover {
+        background: #fff;
+        color: var(--marvel-red);
+        transform: scale(1.05);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="overlay" id="overlay"></div>
+    
+    <header>
+      <div class="logo">
+        <img src="img/logo.png" alt="Marvel Logo">
+        <h1>QUIZ INTERACTIVO</h1>
+      </div>
+      <div class="hamburger" id="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </header>
+
+    <nav class="nav-menu" id="navMenu">
+      <ul>
+        <li><a href="index.html">🏠 INICIO</a></li>
+        <li><a href="heroes.html">🦸 HÉROES</a></li>
+        <li><a href="peliculas.html">🎬 PELÍCULAS</a></li>
+        <li><a href="historias.html">📖 HISTORIAS</a></li>
+        <li><a href="comparador.html">⚔️ COMPARADOR</a></li>
+        <li><a href="galeria.html">🖼️ GALERÍA</a></li>
+        <li><a href="quiz.html">🎮 QUIZ</a></li>
+      </ul>
+    </nav>
+
+    <div class="container">
+      <h1 class="section-header">¿QUÉ HÉROE ERES?</h1>
+
+      <div class="quiz-container">
+        <!-- Introducción -->
+        <div class="quiz-intro" id="quizIntro">
+          <h2>🦸 DESCUBRE TU HÉROE INTERIOR</h2>
+          <p>
+            Responde estas preguntas sobre tu personalidad, valores y habilidades 
+            para descubrir qué superhéroe de Marvel se parece más a ti. ¿Eres un genio 
+            tecnológico como Iron Man, un líder nato como Capitán América, o tienes 
+            poderes místicos como Doctor Strange?
+          </p>
+          <button class="start-btn" onclick="startQuiz()">COMENZAR QUIZ</button>
+        </div>
+
+        <!-- Barra de Progreso -->
+        <div class="progress-bar-container" id="progressContainer" style="display: none;">
+          <div class="progress-bar-fill" id="progressBar" style="width: 0%"></div>
+        </div>
+
+        <!-- Preguntas -->
+        <div id="questionsContainer"></div>
+
+        <!-- Resultado -->
+        <div class="quiz-result" id="quizResult">
+          <img id="resultImage" class="result-hero-image" src="" alt="Tu héroe">
+          <h2 class="result-title" id="resultTitle"></h2>
+          <p class="result-description" id="resultDescription"></p>
+          <button class="restart-btn" onclick="restartQuiz()">REINICIAR QUIZ</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="js/menu.js"></script>
+    <script>
+      const questions = [
+        {
+          question: "¿Cuál es tu mayor fortaleza?",
+          options: [
+            { text: "Mi inteligencia y creatividad", hero: "ironman" },
+            { text: "Mi sentido de responsabilidad", hero: "spiderman" },
+            { text: "Mi código moral inquebrantable", hero: "captainamerica" },
+            { text: "Mi poder y determinación", hero: "thor" }
+          ]
+        },
+        {
+          question: "¿Cómo reaccionas ante un problema difícil?",
+          options: [
+            { text: "Lo analizo y busco una solución tecnológica", hero: "ironman" },
+            { text: "Confío en mis instintos y actúo rápido", hero: "spiderman" },
+            { text: "Mantengo la calma y lidero al equipo", hero: "captainamerica" },
+            { text: "Uso mi fuerza para superar el obstáculo", hero: "hulk" }
+          ]
+        },
+        {
+          question: "¿Qué tipo de poder te gustaría tener?",
+          options: [
+            { text: "Tecnología avanzada y armaduras", hero: "ironman" },
+            { text: "Agilidad y sentidos mejorados", hero: "spiderman" },
+            { text: "Super fuerza y resistencia", hero: "captainamerica" },
+            { text: "Magia y hechicería", hero: "doctorstrange" }
+          ]
+        },
+        {
+          question: "¿Cuál es tu estilo de combate?",
+          options: [
+            { text: "Estratégico y tecnológico", hero: "ironman" },
+            { text: "Ágil y acrobático", hero: "spiderman" },
+            { text: "Directo y honorable", hero: "captainamerica" },
+            { text: "Sigiloso y táctico", hero: "blackwidow" }
+          ]
+        },
+        {
+          question: "¿Qué es más importante para ti?",
+          options: [
+            { text: "Innovar y proteger con tecnología", hero: "ironman" },
+            { text: "Ayudar al prójimo sin importar el costo", hero: "spiderman" },
+            { text: "Defender la justicia y la libertad", hero: "captainamerica" },
+            { text: "Proteger mi hogar y mi gente", hero: "blackpanther" }
+          ]
+        },
+        {
+          question: "¿Cómo describirías tu personalidad?",
+          options: [
+            { text: "Ingenioso, confiado y a veces sarcástico", hero: "ironman" },
+            { text: "Amigable, bromista y responsable", hero: "spiderman" },
+            { text: "Noble, valiente y un líder natural", hero: "captainamerica" },
+            { text: "Poderoso, impulsivo pero con buen corazón", hero: "hulk" }
+          ]
+        }
+      ];
+
+      const heroResults = {
+        ironman: {
+          name: "IRON MAN",
+          image: "img/heroes/ironman.jpg",
+          description: "Eres como Tony Stark: brillante, innovador y carismático. Tu inteligencia y creatividad son tus mayores armas. Aunque a veces eres arrogante, tienes un gran corazón y harías cualquier cosa para proteger a quienes amas. La tecnología es tu aliada y siempre buscas mejorar y evolucionar."
+        },
+        spiderman: {
+          name: "SPIDER-MAN",
+          image: "img/heroes/spiderman.jpg",
+          description: "Eres como Peter Parker: responsable, ágil y con un gran sentido del humor. Sabes que un gran poder conlleva una gran responsabilidad y siempre pones a los demás primero. Tu capacidad para equilibrar tus responsabilidades con tu deseo de ayudar te hace único."
+        },
+        captainamerica: {
+          name: "CAPTAIN AMERICA",
+          image: "img/heroes/captainamerica.jpg",
+          description: "Eres como Steve Rogers: noble, valiente y un líder nato. Tu código moral es inquebrantable y siempre haces lo correcto, sin importar el costo personal. Inspiras a otros con tu determinación y tu ejemplo. La justicia y la libertad son tus valores fundamentales."
+        },
+        thor: {
+          name: "THOR",
+          image: "img/heroes/thor.jpg",
+          description: "Eres como el Dios del Trueno: poderoso, noble y leal. Tienes una presencia imponente y una fuerza interior que te permite superar cualquier desafío. Has aprendido humildad con el tiempo y tu determinación es inquebrantable. Proteges a quienes amas con fiereza."
+        },
+        hulk: {
+          name: "HULK",
+          image: "img/heroes/hulk.jpg",
+          description: "Eres como Bruce Banner: brillante pero emocionalmente complejo. Luchas por encontrar el equilibrio entre tu intelecto y tus emociones intensas. A pesar de tus miedos internos, tienes un gran corazón y siempre proteges a los inocentes. Tu fuerza viene tanto de tu mente como de tu poder."
+        },
+        blackwidow: {
+          name: "BLACK WIDOW",
+          image: "img/heroes/blackwidow.jpg",
+          description: "Eres como Natasha Romanoff: calculadora, letal y leal. Tu pasado te ha forjado, pero no te define. Eres una estratega brillante y una combatiente formidable. Buscas redención a través de tus acciones heroicas y nunca abandonas a tus compañeros."
+        },
+        blackpanther: {
+          name: "BLACK PANTHER",
+          image: "img/heroes/blackpanther.jpg",
+          description: "Eres como T'Challa: sabio, estratégico y protector. Equilibras tus responsabilidades con gracia y siempre piensas en el bienestar de tu comunidad. Tu honor y dedicación te convierten en un líder ejemplar. La tecnología y la tradición se unen en ti."
+        },
+        doctorstrange: {
+          name: "DOCTOR STRANGE",
+          image: "img/heroes/doctorstrange.jpg",
+          description: "Eres como Stephen Strange: inteligente, pragmático y místico. Has aprendido humildad a través de experiencias difíciles. Tu intelecto brillante ahora se dedica a proteger la realidad de amenazas que otros ni siquiera pueden ver. Tomas decisiones difíciles para el bien mayor."
+        }
+      };
+
+      let currentQuestion = 0;
+      let heroScores = {};
+
+      function startQuiz() {
+        document.getElementById('quizIntro').style.display = 'none';
+        document.getElementById('progressContainer').style.display = 'block';
+        currentQuestion = 0;
+        heroScores = {};
+        showQuestion();
+      }
+
+      function showQuestion() {
+        const container = document.getElementById('questionsContainer');
+        container.innerHTML = '';
+
+        const q = questions[currentQuestion];
+        const questionDiv = document.createElement('div');
+        questionDiv.className = 'question-container active';
+
+        questionDiv.innerHTML = `
+          <div class="question-number">PREGUNTA ${currentQuestion + 1} DE ${questions.length}</div>
+          <div class="question-text">${q.question}</div>
+          <div class="options">
+            ${q.options.map((opt, index) => `
+              <button class="option-btn" onclick="selectAnswer('${opt.hero}')">
+                ${opt.text}
+              </button>
+            `).join('')}
+          </div>
+        `;
+
+        container.appendChild(questionDiv);
+        updateProgress();
+      }
+
+      function selectAnswer(hero) {
+        heroScores[hero] = (heroScores[hero] || 0) + 1;
+        currentQuestion++;
+
+        if (currentQuestion < questions.length) {
+          showQuestion();
+        } else {
+          showResult();
+        }
+      }
+
+      function updateProgress() {
+        const progress = ((currentQuestion + 1) / questions.length) * 100;
+        document.getElementById('progressBar').style.width = progress + '%';
+      }
+
+      function showResult() {
+        let maxScore = 0;
+        let resultHero = 'ironman';
+
+        for (let hero in heroScores) {
+          if (heroScores[hero] > maxScore) {
+            maxScore = heroScores[hero];
+            resultHero = hero;
+          }
+        }
+
+        const result = heroResults[resultHero];
+
+        document.getElementById('progressContainer').style.display = 'none';
+        document.getElementById('questionsContainer').style.display = 'none';
+        
+        document.getElementById('resultImage').src = result.image;
+        document.getElementById('resultTitle').textContent = result.name;
+        document.getElementById('resultDescription').textContent = result.description;
+        document.getElementById('quizResult').classList.add('active');
+      }
+
+      function restartQuiz() {
+        document.getElementById('quizResult').classList.remove('active');
+        document.getElementById('quizIntro').style.display = 'block';
+        currentQuestion = 0;
+        heroScores = {};
+      }
+    </script>
+  </body>
+</html>

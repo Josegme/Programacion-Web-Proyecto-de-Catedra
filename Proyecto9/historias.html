@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MARVEL STUDIOS | Historias y Análisis</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto+Condensed:wght@400;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <style>
+      .story-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+        gap: 30px;
+        margin: 40px 0;
+      }
+
+      .story-card {
+        background: linear-gradient(145deg, rgba(0,0,0,0.95) 0%, rgba(26,0,0,0.95) 100%);
+        border: 2px solid rgba(237, 29, 36, 0.5);
+        border-radius: 15px;
+        overflow: hidden;
+        transition: all 0.4s ease;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      }
+
+      .story-card:hover {
+        transform: translateY(-10px);
+        border-color: var(--marvel-red);
+        box-shadow: 0 20px 50px rgba(237, 29, 36, 0.6);
+      }
+
+      .story-image {
+        width: 100%;
+        height: 250px;
+        overflow: hidden;
+        position: relative;
+        background: linear-gradient(135deg, #1a0000 0%, #0a0a0a 100%);
+      }
+
+      .story-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.4s ease;
+      }
+
+      .story-card:hover .story-image img {
+        transform: scale(1.1);
+      }
+
+      .story-badge {
+        position: absolute;
+        top: 15px;
+        left: 15px;
+        padding: 8px 15px;
+        background: rgba(237, 29, 36, 0.95);
+        color: var(--text-light);
+        font-family: 'Bebas Neue', cursive;
+        font-size: 14px;
+        letter-spacing: 1px;
+        border-radius: 20px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+      }
+
+      .story-content {
+        padding: 25px;
+      }
+
+      .story-title {
+        font-family: 'Bebas Neue', cursive;
+        font-size: 28px;
+        color: var(--marvel-red);
+        margin-bottom: 15px;
+        letter-spacing: 2px;
+      }
+
+      .story-meta {
+        display: flex;
+        gap: 15px;
+        margin-bottom: 15px;
+        flex-wrap: wrap;
+      }
+
+      .meta-item {
+        color: var(--text-gray);
+        font-size: 14px;
+      }
+
+      .meta-item strong {
+        color: var(--marvel-red);
+      }
+
+      .story-description {
+        color: var(--text-gray);
+        line-height: 1.8;
+        margin-bottom: 20px;
+      }
+
+      .read-more-btn {
+        width: 100%;
+        padding: 12px;
+        background: transparent;
+        border: 2px solid var(--marvel-red);
+        color: var(--marvel-red);
+        font-family: 'Bebas Neue', cursive;
+        font-size: 16px;
+        letter-spacing: 2px;
+        cursor: pointer;
+        border-radius: 5px;
+        transition: all 0.3s ease;
+      }
+
+      .read-more-btn:hover {
+        background: var(--marvel-red);
+        color: var(--text-light);
+      }
+
+      @media (max-width: 768px) {
+        .story-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="overlay" id="overlay"></div>
+    
+    <header>
+      <div class="logo">
+        <img src="img/logo.png" alt="Marvel Logo">
+        <h1>HISTORIAS ÉPICAS</h1>
+      </div>
+      <div class="hamburger" id="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </header>
+
+    <nav class="nav-menu" id="navMenu">
+      <ul>
+        <li><a href="index.html">🏠 INICIO</a></li>
+        <li><a href="heroes.html">🦸 HÉROES</a></li>
+        <li><a href="peliculas.html">🎬 PELÍCULAS</a></li>
+        <li><a href="historias.html">📖 HISTORIAS</a></li>
+        <li><a href="comparador.html">⚔️ COMPARADOR</a></li>
+        <li><a href="galeria.html">🖼️ GALERÍA</a></li>
+        <li><a href="quiz.html">🎮 QUIZ</a></li>
+      </ul>
+    </nav>
+
+    <div class="container">
+      <h1 class="section-header">ARCOS ARGUMENTALES ÉPICOS</h1>
+      <p style="text-align: center; color: #ccc; margin-bottom: 30px;">
+        Explora las historias más memorables del Universo Marvel
+      </p>
+
+      <div class="story-grid">
+        <!-- Infinity Saga -->
+        <div class="story-card">
+          <div class="story-image">
+            <img src="img/backgrounds/infinity-saga.jpg" alt="Infinity Saga">
+            <span class="story-badge">SAGA ÉPICA</span>
+          </div>
+          <div class="story-content">
+            <h2 class="story-title">📖 THE INFINITY SAGA</h2>
+            <div class="story-meta">
+              <span class="meta-item"><strong>Películas:</strong> 23</span>
+              <span class="meta-item"><strong>Duración:</strong> 2008-2019</span>
+            </div>
+            <p class="story-description">
+              La saga más épica del MCU narra la búsqueda de Thanos por las Gemas del Infinito 
+              y cómo los héroes de la Tierra se unen para detenerlo. Desde el nacimiento de Iron Man 
+              hasta el sacrificio final en Endgame, esta saga define el heroísmo moderno.
+            </p>
+            <button class="read-more-btn">LEER MÁS</button>
+          </div>
+        </div>
+
+        <!-- Civil War -->
+        <div class="story-card">
+          <div class="story-image">
+            <img src="img/backgrounds/civil-war.jpg" alt="Civil War">
+            <span class="story-badge">CONFLICTO INTERNO</span>
+          </div>
+          <div class="story-content">
+            <h2 class="story-title">⚔️ CIVIL WAR</h2>
+            <div class="story-meta">
+              <span class="meta-item"><strong>Año:</strong> 2016</span>
+              <span class="meta-item"><strong>Tipo:</strong> Conflicto Ideológico</span>
+            </div>
+            <p class="story-description">
+              La división de los Avengers marca un punto de quiebre en el MCU. Iron Man y 
+              Capitán América se enfrentan por los Acuerdos de Sokovia, cuestionando la libertad 
+              vs. la responsabilidad. Un conflicto que cambió para siempre la dinámica del equipo.
+            </p>
+            <button class="read-more-btn">LEER MÁS</button>
+          </div>
+        </div>
+
+        <!-- Origen de Spider-Man -->
+        <div class="story-card">
+          <div class="story-image">
+            <img src="img/backgrounds/spiderman-origin.jpg" alt="Spider-Man Origin">
+            <span class="story-badge">ORIGEN</span>
+          </div>
+          <div class="story-content">
+            <h2 class="story-title">🕷️ EL NACIMIENTO DE SPIDER-MAN</h2>
+            <div class="story-meta">
+              <span class="meta-item"><strong>Héroe:</strong> Peter Parker</span>
+              <span class="meta-item"><strong>Primera aparición:</strong> 2016</span>
+            </div>
+            <p class="story-description">
+              La historia de un estudiante de secundaria que obtiene poderes arácnidos después 
+              de ser picado por una araña radioactiva. Su viaje de adolescente común a héroe 
+              responsable está guiado por el principio: "Un gran poder conlleva una gran responsabilidad".
+            </p>
+            <button class="read-more-btn">LEER MÁS</button>
+          </div>
+        </div>
+
+        <!-- Battle of New York -->
+        <div class="story-card">
+          <div class="story-image">
+            <img src="img/backgrounds/battle-ny.jpg" alt="Battle of New York">
+            <span class="story-badge">EVENTO CROSSOVER</span>
+          </div>
+          <div class="story-content">
+            <h2 class="story-title">🏙️ BATALLA DE NUEVA YORK</h2>
+            <div class="story-meta">
+              <span class="meta-item"><strong>Año:</strong> 2012</span>
+              <span class="meta-item"><strong>Amenaza:</strong> Invasión Chitauri</span>
+            </div>
+            <p class="story-description">
+              La primera reunión de los Avengers. Loki lidera una invasión alienígena a Nueva York 
+              y los héroes más poderosos de la Tierra deben aprender a trabajar juntos. Este evento 
+              cambió para siempre el mundo del MCU y demostró que los héroes son más fuertes unidos.
+            </p>
+            <button class="read-more-btn">LEER MÁS</button>
+          </div>
+        </div>
+
+        <!-- Wakanda Forever -->
+        <div class="story-card">
+          <div class="story-image">
+            <img src="img/backgrounds/wakanda.jpg" alt="Wakanda">
+            <span class="story-badge">NACIÓN OCULTA</span>
+          </div>
+          <div class="story-content">
+            <h2 class="story-title">👑 WAKANDA REVELADA</h2>
+            <div class="story-meta">
+              <span class="meta-item"><strong>Ubicación:</strong> Wakanda</span>
+              <span class="meta-item"><strong>Elemento:</strong> Vibranium</span>
+            </div>
+            <p class="story-description">
+              La revelación de Wakanda al mundo marca un hito en el MCU. Esta nación tecnológicamente 
+              avanzada, oculta durante siglos en África, posee el metal más poderoso del planeta: 
+              el vibranium. Black Panther debe decidir el futuro de su reino y su papel en el mundo.
+            </p>
+            <button class="read-more-btn">LEER MÁS</button>
+          </div>
+        </div>
+
+        <!-- El Chasquido -->
+        <div class="story-card">
+          <div class="story-image">
+            <img src="img/backgrounds/snap.jpg" alt="The Snap">
+            <span class="story-badge">EVENTO CATASTRÓFICO</span>
+          </div>
+          <div class="story-content">
+            <h2 class="story-title">💀 EL CHASQUIDO (THE BLIP)</h2>
+            <div class="story-meta">
+              <span class="meta-item"><strong>Año:</strong> 2018</span>
+              <span class="meta-item"><strong>Víctimas:</strong> 50% del universo</span>
+            </div>
+            <p class="story-description">
+              El momento más devastador del MCU. Thanos consigue las seis Gemas del Infinito y con 
+              un chasquido de dedos, elimina a la mitad de todos los seres vivos del universo. Los 
+              héroes sobrevivientes deben lidiar con la pérdida mientras buscan una forma de deshacer 
+              esta catástrofe.
+            </p>
+            <button class="read-more-btn">LEER MÁS</button>
+          </div>
+        </div>
+
+        <!-- Thanos -->
+        <div class="story-card">
+          <div class="story-image">
+            <img src="img/backgrounds/thanos.jpg" alt="Thanos">
+            <span class="story-badge">VILLANO PRINCIPAL</span>
+          </div>
+          <div class="story-content">
+            <h2 class="story-title">😈 THANOS: EL TITÁN LOCO</h2>
+            <div class="story-meta">
+              <span class="meta-item"><strong>Origen:</strong> Titán</span>
+              <span class="meta-item"><strong>Objetivo:</strong> Balance Universal</span>
+            </div>
+            <p class="story-description">
+              El villano más poderoso del MCU. Thanos cree que la única forma de salvar el universo 
+              es eliminando la mitad de su población. Su búsqueda de las Gemas del Infinito y su 
+              convicción inquebrantable lo convierten en una amenaza como ninguna otra. Un villano 
+              que realmente creyó que estaba haciendo lo correcto.
+            </p>
+            <button class="read-more-btn">LEER MÁS</button>
+          </div>
+        </div>
+
+        <!-- Multiverse -->
+        <div class="story-card">
+          <div class="story-image">
+            <img src="img/backgrounds/multiverse.jpg" alt="Multiverse">
+            <span class="story-badge">NUEVA ERA</span>
+          </div>
+          <div class="story-content">
+            <h2 class="story-title">🌌 EL MULTIVERSO</h2>
+            <div class="story-meta">
+              <span class="meta-item"><strong>Concepto:</strong> Realidades Infinitas</span>
+              <span class="meta-item"><strong>Fase:</strong> 4-5</span>
+            </div>
+            <p class="story-description">
+              La nueva frontera del MCU. Después de Endgame, el descubrimiento del multiverso abre 
+              infinitas posibilidades. Realidades alternativas, diferentes versiones de héroes y 
+              villanos, y amenazas que trascienden dimensiones. Doctor Strange y otros exploradores 
+              místicos navegan este nuevo territorio peligroso.
+            </p>
+            <button class="read-more-btn">LEER MÁS</button>
+          </div>
+        </div>
+
+        <!-- X-Men Origins -->
+        <div class="story-card">
+          <div class="story-image">
+            <img src="img/backgrounds/xmen.jpg" alt="X-Men">
+            <span class="story-badge">MUTANTES</span>
+          </div>
+          <div class="story-content">
+            <h2 class="story-title">✖️ NACIMIENTO DE LOS X-MEN</h2>
+            <div class="story-meta">
+              <span class="meta-item"><strong>Líder:</strong> Charles Xavier</span>
+              <span class="meta-item"><strong>Concepto:</strong> Evolución Humana</span>
+            </div>
+            <p class="story-description">
+              La historia de los mutantes, el siguiente paso en la evolución humana. El Profesor X 
+              funda la Escuela para Jóvenes Superdotados, un refugio para mutantes donde aprenden a 
+              controlar sus poderes. Los X-Men luchan por la coexistencia pacífica entre humanos y 
+              mutantes en un mundo que los teme y los odia.
+            </p>
+            <button class="read-more-btn">LEER MÁS</button>
+          </div>
+        </div>
+      </div>
+
+      <p style="text-align: center; color: #666; margin-top: 40px; font-style: italic;">
+        💡 Cada historia representa un momento crucial en el desarrollo del Universo Marvel
+      </p>
+    </div>
+
+    <script src="js/menu.js"></script>
+    <script src="js/scroll-animations.js"></script>
+  </body>
+</html>

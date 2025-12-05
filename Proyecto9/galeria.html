@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MARVEL STUDIOS | Galería Multimedia</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto+Condensed:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="css/main.css" />
+    <link rel="stylesheet" href="css/animations.css" />
+    <style>
+      .gallery-filters {
+        display: flex;
+        gap: 15px;
+        justify-content: center;
+        margin: 30px 0;
+        flex-wrap: wrap;
+      }
+
+      .filter-btn-gallery {
+        padding: 12px 25px;
+        background: rgba(0, 0, 0, 0.7);
+        border: 2px solid rgba(237, 29, 36, 0.5);
+        color: var(--text-gray);
+        font-family: "Bebas Neue", cursive;
+        font-size: 16px;
+        letter-spacing: 1px;
+        cursor: pointer;
+        border-radius: 25px;
+        transition: all 0.3s ease;
+      }
+
+      .filter-btn-gallery:hover,
+      .filter-btn-gallery.active {
+        background: var(--marvel-red);
+        color: var(--text-light);
+        border-color: var(--marvel-red);
+        box-shadow: 0 5px 15px rgba(237, 29, 36, 0.5);
+        transform: translateY(-2px);
+      }
+
+      .gallery-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 20px;
+        margin: 40px 0;
+      }
+
+      .gallery-item {
+        position: relative;
+        overflow: hidden;
+        border-radius: 10px;
+        cursor: pointer;
+        aspect-ratio: 1;
+        background: #000;
+        border: 2px solid rgba(237, 29, 36, 0.3);
+        transition: all 0.4s ease;
+      }
+
+      .gallery-item:hover {
+        transform: scale(1.05);
+        border-color: var(--marvel-red);
+        box-shadow: 0 10px 30px rgba(237, 29, 36, 0.6);
+      }
+
+      .gallery-item.hidden {
+        display: none;
+      }
+
+      .gallery-item img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.4s ease;
+      }
+
+      .gallery-item:hover img {
+        transform: scale(1.1);
+      }
+
+      .gallery-overlay {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent);
+        padding: 20px;
+        transform: translateY(100%);
+        transition: transform 0.4s ease;
+      }
+
+      .gallery-item:hover .gallery-overlay {
+        transform: translateY(0);
+      }
+
+      .gallery-title {
+        font-family: "Bebas Neue", cursive;
+        font-size: 20px;
+        color: var(--marvel-red);
+        letter-spacing: 1px;
+      }
+
+      .gallery-category {
+        color: var(--text-gray);
+        font-size: 14px;
+        margin-top: 5px;
+      }
+
+      /* Lightbox Modal */
+      .lightbox {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.95);
+        z-index: 10000;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .lightbox.active {
+        display: flex;
+      }
+
+      .lightbox-content {
+        max-width: 90%;
+        max-height: 90vh;
+        position: relative;
+      }
+
+      .lightbox-content img {
+        max-width: 100%;
+        max-height: 90vh;
+        border-radius: 10px;
+        box-shadow: 0 20px 60px rgba(237, 29, 36, 0.6);
+      }
+
+      .lightbox-close {
+        position: absolute;
+        top: -50px;
+        right: 0;
+        background: var(--marvel-red);
+        color: var(--text-light);
+        border: none;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        font-size: 24px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .lightbox-close:hover {
+        background: var(--text-light);
+        color: var(--marvel-red);
+        transform: rotate(90deg);
+      }
+
+      .lightbox-nav {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background: rgba(237, 29, 36, 0.8);
+        color: var(--text-light);
+        border: none;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        font-size: 24px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .lightbox-nav:hover {
+        background: var(--marvel-red);
+        transform: translateY(-50%) scale(1.1);
+      }
+
+      .lightbox-prev {
+        left: 20px;
+      }
+
+      .lightbox-next {
+        right: 20px;
+      }
+
+      .lightbox-info {
+        position: absolute;
+        bottom: -80px;
+        left: 0;
+        right: 0;
+        text-align: center;
+      }
+
+      .lightbox-info h3 {
+        font-family: "Bebas Neue", cursive;
+        font-size: 28px;
+        color: var(--marvel-red);
+        letter-spacing: 2px;
+      }
+
+      .lightbox-info p {
+        color: var(--text-gray);
+        margin-top: 5px;
+      }
+
+      @media (max-width: 768px) {
+        .gallery-grid {
+          grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+          gap: 15px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="overlay" id="overlay"></div>
+
+    <header>
+      <div class="logo">
+        <img src="img/logo.png" alt="Marvel Logo" />
+        <h1>GALERÍA MULTIMEDIA</h1>
+      </div>
+      <div class="hamburger" id="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </header>
+
+    <nav class="nav-menu" id="navMenu">
+      <ul>
+        <li><a href="index.html">🏠 INICIO</a></li>
+        <li><a href="heroes.html">🦸 HÉROES</a></li>
+        <li><a href="peliculas.html">🎬 PELÍCULAS</a></li>
+        <li><a href="historias.html">📖 HISTORIAS</a></li>
+        <li><a href="comparador.html">⚔️ COMPARADOR</a></li>
+        <li><a href="galeria.html">🖼️ GALERÍA</a></li>
+        <li><a href="quiz.html">🎮 QUIZ</a></li>
+      </ul>
+    </nav>
+
+    <div class="container">
+      <h1 class="section-header">GALERÍA MULTIMEDIA</h1>
+      <p style="text-align: center; color: #ccc; margin-bottom: 30px">
+        Explora imágenes épicas del Universo Marvel
+      </p>
+
+      <!-- Filtros -->
+      <div class="gallery-filters">
+        <button class="filter-btn-gallery active" data-category="todas">
+          TODAS
+        </button>
+        <button class="filter-btn-gallery" data-category="heroes">
+          HÉROES
+        </button>
+        <button class="filter-btn-gallery" data-category="peliculas">
+          PELÍCULAS
+        </button>
+        <button class="filter-btn-gallery" data-category="concept">
+          CONCEPT ART
+        </button>
+        <button class="filter-btn-gallery" data-category="wallpapers">
+          WALLPAPERS
+        </button>
+      </div>
+
+      <!-- Grid de Galería -->
+      <div class="gallery-grid">
+        <!-- Héroes -->
+        <div
+          class="gallery-item"
+          data-category="heroes"
+          onclick="openLightbox(0)"
+        >
+          <img src="img/heroes/Ironman.jpg" alt="Iron Man" />
+          <div class="gallery-overlay">
+            <div class="gallery-title">IRON MAN</div>
+            <div class="gallery-category">Héroes</div>
+          </div>
+        </div>
+
+        <div
+          class="gallery-item"
+          data-category="heroes"
+          onclick="openLightbox(1)"
+        >
+          <img src="img/heroes/Spiderman.jpg" alt="Spider-Man" />
+          <div class="gallery-overlay">
+            <div class="gallery-title">SPIDER-MAN</div>
+            <div class="gallery-category">Héroes</div>
+          </div>
+        </div>
+
+        <div
+          class="gallery-item"
+          data-category="heroes"
+          onclick="openLightbox(2)"
+        >
+          <img src="img/heroes/CapitanAmerica.jpg" alt="Captain America" />
+          <div class="gallery-overlay">
+            <div class="gallery-title">CAPTAIN AMERICA</div>
+            <div class="gallery-category">Héroes</div>
+          </div>
+        </div>
+
+        <div
+          class="gallery-item"
+          data-category="heroes"
+          onclick="openLightbox(3)"
+        >
+          <img src="img/heroes/Thor.jpg" alt="Thor" />
+          <div class="gallery-overlay">
+            <div class="gallery-title">THOR</div>
+            <div class="gallery-category">Héroes</div>
+          </div>
+        </div>
+
+        <div
+          class="gallery-item"
+          data-category="heroes"
+          onclick="openLightbox(4)"
+        >
+          <img src="img/heroes/Hulk.jpg" alt="Hulk" />
+          <div class="gallery-overlay">
+            <div class="gallery-title">HULK</div>
+            <div class="gallery-category">Héroes</div>
+          </div>
+        </div>
+
+        <div
+          class="gallery-item"
+          data-category="heroes"
+          onclick="openLightbox(5)"
+        >
+          <img src="img/heroes/BlackWidow.jpg" alt="Black Widow" />
+          <div class="gallery-overlay">
+            <div class="gallery-title">BLACK WIDOW</div>
+            <div class="gallery-category">Héroes</div>
+          </div>
+        </div>
+
+        <div
+          class="gallery-item"
+          data-category="heroes"
+          onclick="openLightbox(6)"
+        >
+          <img src="img/heroes/Blackpanter.jpg" alt="Black Panther" />
+          <div class="gallery-overlay">
+            <div class="gallery-title">BLACK PANTHER</div>
+            <div class="gallery-category">Héroes</div>
+          </div>
+        </div>
+
+        <div
+          class="gallery-item"
+          data-category="heroes"
+          onclick="openLightbox(7)"
+        >
+          <img src="img/heroes/DrStrange.jpg" alt="Doctor Strange" />
+          <div class="gallery-overlay">
+            <div class="gallery-title">DOCTOR STRANGE</div>
+            <div class="gallery-category">Héroes</div>
+          </div>
+        </div>
+
+        <!-- Películas -->
+        <div
+          class="gallery-item"
+          data-category="peliculas"
+          onclick="openLightbox(8)"
+        >
+          <img src="img/movies/avengers.jpg" alt="The Avengers" />
+          <div class="gallery-overlay">
+            <div class="gallery-title">THE AVENGERS</div>
+            <div class="gallery-category">Películas</div>
+          </div>
+        </div>
+
+        <div
+          class="gallery-item"
+          data-category="peliculas"
+          onclick="openLightbox(9)"
+        >
+          <img src="img/movies/infinitywar.jpg" alt="Infinity War" />
+          <div class="gallery-overlay">
+            <div class="gallery-title">INFINITY WAR</div>
+            <div class="gallery-category">Películas</div>
+          </div>
+        </div>
+
+        <div
+          class="gallery-item"
+          data-category="peliculas"
+          onclick="openLightbox(10)"
+        >
+          <img src="img/movies/endgame.jpg" alt="Endgame" />
+          <div class="gallery-overlay">
+            <div class="gallery-title">ENDGAME</div>
+            <div class="gallery-category">Películas</div>
+          </div>
+        </div>
+
+        <div
+          class="gallery-item"
+          data-category="peliculas"
+          onclick="openLightbox(11)"
+        >
+          <img src="img/movies/blackpanther.jpg" alt="Black Panther" />
+          <div class="gallery-overlay">
+            <div class="gallery-title">BLACK PANTHER</div>
+            <div class="gallery-category">Películas</div>
+          </div>
+        </div>
+
+        <!-- Wallpapers -->
+        <div
+          class="gallery-item"
+          data-category="wallpapers"
+          onclick="openLightbox(12)"
+        >
+          <img src="img/fondo.jpg" alt="Marvel Wallpaper" />
+          <div class="gallery-overlay">
+            <div class="gallery-title">MARVEL UNIVERSE</div>
+            <div class="gallery-category">Wallpapers</div>
+          </div>
+        </div>
+      </div>
+
+      <p
+        style="
+          text-align: center;
+          color: #666;
+          margin-top: 40px;
+          font-style: italic;
+        "
+      >
+        💡 Nota: Agrega tus imágenes favoritas en las carpetas correspondientes
+        para expandir la galería
+      </p>
+    </div>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox">
+      <div class="lightbox-content">
+        <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+        <button
+          class="lightbox-nav lightbox-prev"
+          onclick="navigateLightbox(-1)"
+        >
+          ‹
+        </button>
+        <img id="lightboxImage" src="" alt="Lightbox Image" />
+        <button
+          class="lightbox-nav lightbox-next"
+          onclick="navigateLightbox(1)"
+        >
+          ›
+        </button>
+        <div class="lightbox-info">
+          <h3 id="lightboxTitle"></h3>
+          <p id="lightboxCategory"></p>
+        </div>
+      </div>
+    </div>
+
+    <script src="js/menu.js"></script>
+    <script src="js/scroll-animations.js"></script>
+    <script>
+      // Filtros de galería
+      const filterButtons = document.querySelectorAll(".filter-btn-gallery");
+      const galleryItems = document.querySelectorAll(".gallery-item");
+
+      filterButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+          filterButtons.forEach((btn) => btn.classList.remove("active"));
+          button.classList.add("active");
+
+          const category = button.getAttribute("data-category");
+
+          galleryItems.forEach((item) => {
+            if (
+              category === "todas" ||
+              item.getAttribute("data-category") === category
+            ) {
+              item.classList.remove("hidden");
+            } else {
+              item.classList.add("hidden");
+            }
+          });
+        });
+      });
+
+      // Lightbox
+      let currentImageIndex = 0;
+      const images = Array.from(galleryItems);
+
+      function openLightbox(index) {
+        currentImageIndex = index;
+        const item = images[index];
+        const img = item.querySelector("img");
+        const title = item.querySelector(".gallery-title").textContent;
+        const category = item.querySelector(".gallery-category").textContent;
+
+        document.getElementById("lightboxImage").src = img.src;
+        document.getElementById("lightboxTitle").textContent = title;
+        document.getElementById("lightboxCategory").textContent = category;
+        document.getElementById("lightbox").classList.add("active");
+        document.body.style.overflow = "hidden";
+      }
+
+      function closeLightbox() {
+        document.getElementById("lightbox").classList.remove("active");
+        document.body.style.overflow = "auto";
+      }
+
+      function navigateLightbox(direction) {
+        const visibleImages = images.filter(
+          (item) => !item.classList.contains("hidden")
+        );
+        const currentVisibleIndex = visibleImages.indexOf(
+          images[currentImageIndex]
+        );
+        let newIndex = currentVisibleIndex + direction;
+
+        if (newIndex < 0) newIndex = visibleImages.length - 1;
+        if (newIndex >= visibleImages.length) newIndex = 0;
+
+        const newImageIndex = images.indexOf(visibleImages[newIndex]);
+        openLightbox(newImageIndex);
+      }
+
+      // Cerrar con Escape
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") closeLightbox();
+        if (e.key === "ArrowLeft") navigateLightbox(-1);
+        if (e.key === "ArrowRight") navigateLightbox(1);
+      });
+
+      // Cerrar al hacer click fuera
+      document.getElementById("lightbox").addEventListener("click", (e) => {
+        if (e.target.id === "lightbox") closeLightbox();
+      });
+    </script>
+  </body>
+</html>
