@@ -3,6 +3,8 @@ const mongoose = require("mongoose");
 const fs = require("fs");
 const path = require("path");
 const Hero = require("../models/hero.model");
+const User = require("../models/user.model");
+const bcrypt = require("bcryptjs");
 
 async function run() {
   const mongoUri =
@@ -34,6 +36,28 @@ async function run() {
   await Hero.deleteMany({});
   const res = await Hero.insertMany(arr);
   console.log("Inserted", res.length, "heroes");
+
+  // Create an admin user for testing if it doesn't exist
+  try {
+    const adminEmail = process.env.SEED_ADMIN_EMAIL || "admin@example.com";
+    const adminPwd = process.env.SEED_ADMIN_PWD || "admin123";
+    const existing = await User.findOne({ email: adminEmail });
+    if (!existing) {
+      const hash = await bcrypt.hash(adminPwd, 10);
+      await User.create({
+        email: adminEmail,
+        passwordHash: hash,
+        role: "admin",
+      });
+      console.log(
+        `Created admin user ${adminEmail} (password from SEED_ADMIN_PWD or default).`
+      );
+    } else {
+      console.log(`Admin user ${adminEmail} already exists.`);
+    }
+  } catch (err) {
+    console.error("Failed to create admin user", err);
+  }
   await mongoose.disconnect();
   process.exit(0);
 }

@@ -4,21 +4,24 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>MARVEL STUDIOS | Heroes Database</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto+Condensed:wght@400;700&display=swap" rel="stylesheet">
-    
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto+Condensed:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+
     <!-- CSS Modular -->
-    <link rel="stylesheet" href="css/main.css">
-    <link rel="stylesheet" href="css/heroes.css">
-    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/main.css" />
+    <link rel="stylesheet" href="css/heroes.css" />
+    <link rel="stylesheet" href="css/animations.css" />
   </head>
   <body>
     <div class="overlay" id="overlay"></div>
-    
+
     <header>
       <div class="logo">
-        <img src="img/logo.png" alt="Marvel Logo">
+        <img src="img/logo.png" alt="Marvel Logo" />
         <h1>HEROES DATABASE</h1>
       </div>
       <div class="hamburger" id="hamburger">
@@ -49,39 +52,41 @@
       <!-- Búsqueda y Filtros -->
       <div class="search-filter-container">
         <div class="search-box">
-          <input type="text" id="searchInput" placeholder="Buscar héroe por nombre...">
+          <input
+            type="text"
+            id="searchInput"
+            placeholder="Buscar héroe por nombre..."
+          />
           <span class="search-icon">🔍</span>
         </div>
-        
         <div class="filter-buttons">
-          <button class="filter-btn active" data-filter="todos">TODOS</button>
+          <button class="filter-btn active" data-filter="all">TODOS</button>
           <button class="filter-btn" data-filter="avengers">AVENGERS</button>
           <button class="filter-btn" data-filter="x-men">X-MEN</button>
           <button class="filter-btn" data-filter="guardians">GUARDIANS</button>
         </div>
       </div>
 
-      <div class="results-count"></div>
+      <div class="results-count">
+        Mostrando <span id="resultsCount">0</span> héroes
+      </div>
 
-      <!-- Sección Avengers -->
-      <div id="avengers"></div>
-
-      <div class="hero-grid">
-        <!-- Iron Man -->
-        <div class="hero-card" data-team="avengers" data-name="Iron Man">
+      <div class="hero-grid" id="heroGrid">
+        <!-- Los héroes se renderizan dinámicamente aquí -->
+        <div class="hero-card" data-team="avengers" data-name="Iron-Man">
           <div class="hero-image">
-            <img src="img/heroes/ironman.jpg" alt="Iron Man">
+            <img src="img/heroes/Ironman.jpg" alt="Iron-Man" />
             <span class="team-badge">AVENGERS</span>
           </div>
           <div class="hero-content">
             <h2 class="hero-name">IRON MAN</h2>
-            
+
             <h3 class="section-title">Características Físicas</h3>
             <div class="hero-info">
-              <strong>Nombre:</strong> Tony Stark<br>
-              <strong>Altura:</strong> 1.85 m<br>
-              <strong>Peso:</strong> 102 kg<br>
-              <strong>Ojos:</strong> Azules<br>
+              <strong>Nombre:</strong> Tony Stark<br />
+              <strong>Altura:</strong> 1.85 m<br />
+              <strong>Peso:</strong> 102 kg<br />
+              <strong>Ojos:</strong> Azules<br />
               <strong>Cabello:</strong> Negro
             </div>
 
@@ -97,9 +102,9 @@
 
             <h3 class="section-title">Personalidad</h3>
             <p class="personality">
-              Brillante, carismático y a veces arrogante. Tony Stark es un genio 
-              visionario que combina su ingenio con un profundo sentido de 
-              responsabilidad. Detrás de su actitud despreocupada, se esconde un 
+              Brillante, carismático y a veces arrogante. Tony Stark es un genio
+              visionario que combina su ingenio con un profundo sentido de
+              responsabilidad. Detrás de su actitud despreocupada, se esconde un
               héroe dispuesto a sacrificarlo todo por proteger al mundo.
             </p>
           </div>
@@ -108,18 +113,18 @@
         <!-- Spider-Man -->
         <div class="hero-card" data-team="avengers" data-name="Spider-Man">
           <div class="hero-image">
-            <img src="img/heroes/spiderman.jpg" alt="Spider-Man">
+            <img src="img/heroes/spiderman.jpg" alt="Spider-Man" />
             <span class="team-badge">AVENGERS</span>
           </div>
           <div class="hero-content">
             <h2 class="hero-name">SPIDER-MAN</h2>
-            
+
             <h3 class="section-title">Características Físicas</h3>
             <div class="hero-info">
-              <strong>Nombre:</strong> Peter Parker<br>
-              <strong>Altura:</strong> 1.78 m<br>
-              <strong>Peso:</strong> 76 kg<br>
-              <strong>Ojos:</strong> Marrones<br>
+              <strong>Nombre:</strong> Peter Parker<br />
+              <strong>Altura:</strong> 1.78 m<br />
+              <strong>Peso:</strong> 76 kg<br />
+              <strong>Ojos:</strong> Marrones<br />
               <strong>Cabello:</strong> Castaño
             </div>
 
@@ -135,9 +140,9 @@
 
             <h3 class="section-title">Personalidad</h3>
             <p class="personality">
-              Ingenioso, responsable y con gran sentido del humor. Peter Parker 
-              equilibra su vida como estudiante y superhéroe con dedicación. 
-              Siempre guiado por el principio de que "un gran poder conlleva una 
+              Ingenioso, responsable y con gran sentido del humor. Peter Parker
+              equilibra su vida como estudiante y superhéroe con dedicación.
+              Siempre guiado por el principio de que "un gran poder conlleva una
               gran responsabilidad", nunca se rinde ante la adversidad.
             </p>
           </div>
@@ -146,18 +151,18 @@
         <!-- Captain America -->
         <div class="hero-card" data-team="avengers" data-name="Captain America">
           <div class="hero-image">
-            <img src="img/heroes/captainamerica.jpg" alt="Captain America">
+            <img src="img/heroes/captainamerica.jpg" alt="Captain America" />
             <span class="team-badge">AVENGERS</span>
           </div>
           <div class="hero-content">
             <h2 class="hero-name">CAPTAIN AMERICA</h2>
-            
+
             <h3 class="section-title">Características Físicas</h3>
             <div class="hero-info">
-              <strong>Nombre:</strong> Steve Rogers<br>
-              <strong>Altura:</strong> 1.88 m<br>
-              <strong>Peso:</strong> 109 kg<br>
-              <strong>Ojos:</strong> Azules<br>
+              <strong>Nombre:</strong> Steve Rogers<br />
+              <strong>Altura:</strong> 1.88 m<br />
+              <strong>Peso:</strong> 109 kg<br />
+              <strong>Ojos:</strong> Azules<br />
               <strong>Cabello:</strong> Rubio
             </div>
 
@@ -173,9 +178,9 @@
 
             <h3 class="section-title">Personalidad</h3>
             <p class="personality">
-              Noble, valiente e inquebrantable en sus convicciones. Steve Rogers 
-              representa los más altos ideales del heroísmo. Líder natural y 
-              estratega brillante, siempre pone el bienestar de los demás por 
+              Noble, valiente e inquebrantable en sus convicciones. Steve Rogers
+              representa los más altos ideales del heroísmo. Líder natural y
+              estratega brillante, siempre pone el bienestar de los demás por
               encima del suyo propio. Su código moral es su mayor fortaleza.
             </p>
           </div>
@@ -184,18 +189,18 @@
         <!-- Thor -->
         <div class="hero-card" data-team="avengers" data-name="Thor">
           <div class="hero-image">
-            <img src="img/heroes/thor.jpg" alt="Thor">
+            <img src="img/heroes/thor.jpg" alt="Thor" />
             <span class="team-badge">AVENGERS</span>
           </div>
           <div class="hero-content">
             <h2 class="hero-name">THOR</h2>
-            
+
             <h3 class="section-title">Características Físicas</h3>
             <div class="hero-info">
-              <strong>Nombre:</strong> Thor Odinson<br>
-              <strong>Altura:</strong> 1.98 m<br>
-              <strong>Peso:</strong> 290 kg<br>
-              <strong>Ojos:</strong> Azules<br>
+              <strong>Nombre:</strong> Thor Odinson<br />
+              <strong>Altura:</strong> 1.98 m<br />
+              <strong>Peso:</strong> 290 kg<br />
+              <strong>Ojos:</strong> Azules<br />
               <strong>Cabello:</strong> Rubio
             </div>
 
@@ -211,10 +216,10 @@
 
             <h3 class="section-title">Personalidad</h3>
             <p class="personality">
-              Dios del Trueno y príncipe de Asgard. Thor combina la nobleza real con el 
-              espíritu guerrero. Aunque en un principio era arrogante, ha madurado hasta 
-              convertirse en un héroe humilde y protector. Su lealtad hacia sus amigos y 
-              su determinación son inquebrantables.
+              Dios del Trueno y príncipe de Asgard. Thor combina la nobleza real
+              con el espíritu guerrero. Aunque en un principio era arrogante, ha
+              madurado hasta convertirse en un héroe humilde y protector. Su
+              lealtad hacia sus amigos y su determinación son inquebrantables.
             </p>
           </div>
         </div>
@@ -222,18 +227,18 @@
         <!-- Hulk -->
         <div class="hero-card" data-team="avengers" data-name="Hulk">
           <div class="hero-image">
-            <img src="img/heroes/hulk.jpg" alt="Hulk">
+            <img src="img/heroes/hulk.jpg" alt="Hulk" />
             <span class="team-badge">AVENGERS</span>
           </div>
           <div class="hero-content">
             <h2 class="hero-name">HULK</h2>
-            
+
             <h3 class="section-title">Características Físicas</h3>
             <div class="hero-info">
-              <strong>Nombre:</strong> Bruce Banner<br>
-              <strong>Altura:</strong> 2.44 m<br>
-              <strong>Peso:</strong> 635 kg<br>
-              <strong>Ojos:</strong> Verdes<br>
+              <strong>Nombre:</strong> Bruce Banner<br />
+              <strong>Altura:</strong> 2.44 m<br />
+              <strong>Peso:</strong> 635 kg<br />
+              <strong>Ojos:</strong> Verdes<br />
               <strong>Cabello:</strong> Verde
             </div>
 
@@ -248,10 +253,11 @@
 
             <h3 class="section-title">Personalidad</h3>
             <p class="personality">
-              Bruce Banner es un genio científico atrapado con su alter ego destructivo. 
-              Lucha constantemente por controlar su ira y encontrar el equilibrio entre 
-              su inteligencia y su poder. A pesar de su temor a lastimar a otros, siempre 
-              está dispuesto a proteger a los inocentes.
+              Bruce Banner es un genio científico atrapado con su alter ego
+              destructivo. Lucha constantemente por controlar su ira y encontrar
+              el equilibrio entre su inteligencia y su poder. A pesar de su
+              temor a lastimar a otros, siempre está dispuesto a proteger a los
+              inocentes.
             </p>
           </div>
         </div>
@@ -259,18 +265,18 @@
         <!-- Black Widow -->
         <div class="hero-card" data-team="avengers" data-name="Black Widow">
           <div class="hero-image">
-            <img src="img/heroes/blackwidow.jpg" alt="Black Widow">
+            <img src="img/heroes/blackwidow.jpg" alt="Black Widow" />
             <span class="team-badge">AVENGERS</span>
           </div>
           <div class="hero-content">
             <h2 class="hero-name">BLACK WIDOW</h2>
-            
+
             <h3 class="section-title">Características Físicas</h3>
             <div class="hero-info">
-              <strong>Nombre:</strong> Natasha Romanoff<br>
-              <strong>Altura:</strong> 1.70 m<br>
-              <strong>Peso:</strong> 59 kg<br>
-              <strong>Ojos:</strong> Verdes<br>
+              <strong>Nombre:</strong> Natasha Romanoff<br />
+              <strong>Altura:</strong> 1.70 m<br />
+              <strong>Peso:</strong> 59 kg<br />
+              <strong>Ojos:</strong> Verdes<br />
               <strong>Cabello:</strong> Rojo
             </div>
 
@@ -286,10 +292,10 @@
 
             <h3 class="section-title">Personalidad</h3>
             <p class="personality">
-              Enigmática, calculadora y letal. Natasha Romanoff es una de las espías más 
-              peligrosas del mundo. Detrás de su pasado oscuro, busca redención a través 
-              de sus acciones heroicas. Su lealtad a sus compañeros es absoluta y nunca 
-              duda en sacrificarse por la misión.
+              Enigmática, calculadora y letal. Natasha Romanoff es una de las
+              espías más peligrosas del mundo. Detrás de su pasado oscuro, busca
+              redención a través de sus acciones heroicas. Su lealtad a sus
+              compañeros es absoluta y nunca duda en sacrificarse por la misión.
             </p>
           </div>
         </div>
@@ -297,18 +303,18 @@
         <!-- Black Panther -->
         <div class="hero-card" data-team="avengers" data-name="Black Panther">
           <div class="hero-image">
-            <img src="img/heroes/blackpanther.jpg" alt="Black Panther">
+            <img src="img/heroes/blackpanther.jpg" alt="Black Panther" />
             <span class="team-badge">AVENGERS</span>
           </div>
           <div class="hero-content">
             <h2 class="hero-name">BLACK PANTHER</h2>
-            
+
             <h3 class="section-title">Características Físicas</h3>
             <div class="hero-info">
-              <strong>Nombre:</strong> T'Challa<br>
-              <strong>Altura:</strong> 1.83 m<br>
-              <strong>Peso:</strong> 90 kg<br>
-              <strong>Ojos:</strong> Marrones<br>
+              <strong>Nombre:</strong> T'Challa<br />
+              <strong>Altura:</strong> 1.83 m<br />
+              <strong>Peso:</strong> 90 kg<br />
+              <strong>Ojos:</strong> Marrones<br />
               <strong>Cabello:</strong> Negro
             </div>
 
@@ -324,10 +330,11 @@
 
             <h3 class="section-title">Personalidad</h3>
             <p class="personality">
-              Noble, estratégico y protector. T'Challa es el rey de Wakanda y portador 
-              del manto de Black Panther. Equilibra las responsabilidades de gobernar una 
-              nación avanzada con su deber como superhéroe. Su sabiduría, honor y dedicación 
-              a su pueblo lo convierten en un líder ejemplar.
+              Noble, estratégico y protector. T'Challa es el rey de Wakanda y
+              portador del manto de Black Panther. Equilibra las
+              responsabilidades de gobernar una nación avanzada con su deber
+              como superhéroe. Su sabiduría, honor y dedicación a su pueblo lo
+              convierten en un líder ejemplar.
             </p>
           </div>
         </div>
@@ -335,18 +342,18 @@
         <!-- Doctor Strange -->
         <div class="hero-card" data-team="avengers" data-name="Doctor Strange">
           <div class="hero-image">
-            <img src="img/heroes/doctorstrange.jpg" alt="Doctor Strange">
+            <img src="img/heroes/doctorstrange.jpg" alt="Doctor Strange" />
             <span class="team-badge">AVENGERS</span>
           </div>
           <div class="hero-content">
             <h2 class="hero-name">DOCTOR STRANGE</h2>
-            
+
             <h3 class="section-title">Características Físicas</h3>
             <div class="hero-info">
-              <strong>Nombre:</strong> Stephen Strange<br>
-              <strong>Altura:</strong> 1.88 m<br>
-              <strong>Peso:</strong> 81 kg<br>
-              <strong>Ojos:</strong> Grises<br>
+              <strong>Nombre:</strong> Stephen Strange<br />
+              <strong>Altura:</strong> 1.88 m<br />
+              <strong>Peso:</strong> 81 kg<br />
+              <strong>Ojos:</strong> Grises<br />
               <strong>Cabello:</strong> Negro con Canas
             </div>
 
@@ -362,32 +369,33 @@
 
             <h3 class="section-title">Personalidad</h3>
             <p class="personality">
-              Arrogante convertido en humilde maestro de las artes místicas. Stephen Strange 
-              pasó de ser un cirujano egocéntrico a convertirse en el Hechicero Supremo. Su 
-              intelecto brillante ahora se dedica a proteger la realidad de amenazas místicas. 
-              Pragmático y calculador, toma decisiones difíciles para el bien mayor.
+              Arrogante convertido en humilde maestro de las artes místicas.
+              Stephen Strange pasó de ser un cirujano egocéntrico a convertirse
+              en el Hechicero Supremo. Su intelecto brillante ahora se dedica a
+              proteger la realidad de amenazas místicas. Pragmático y
+              calculador, toma decisiones difíciles para el bien mayor.
             </p>
           </div>
         </div>
 
         <!-- Sección X-Men -->
-        <div id="x-men" style="grid-column: 1 / -1; height: 1px;"></div>
+        <div id="x-men" style="grid-column: 1 / -1; height: 1px"></div>
 
         <!-- Wolverine -->
         <div class="hero-card" data-team="x-men" data-name="Wolverine">
           <div class="hero-image">
-            <img src="img/heroes/wolverine.jpg" alt="Wolverine">
+            <img src="img/heroes/wolverine.jpg" alt="Wolverine" />
             <span class="team-badge">X-MEN</span>
           </div>
           <div class="hero-content">
             <h2 class="hero-name">WOLVERINE</h2>
-            
+
             <h3 class="section-title">Características Físicas</h3>
             <div class="hero-info">
-              <strong>Nombre:</strong> Logan<br>
-              <strong>Altura:</strong> 1.60 m<br>
-              <strong>Peso:</strong> 136 kg<br>
-              <strong>Ojos:</strong> Azules<br>
+              <strong>Nombre:</strong> Logan<br />
+              <strong>Altura:</strong> 1.60 m<br />
+              <strong>Peso:</strong> 136 kg<br />
+              <strong>Ojos:</strong> Azules<br />
               <strong>Cabello:</strong> Negro
             </div>
 
@@ -403,10 +411,11 @@
 
             <h3 class="section-title">Personalidad</h3>
             <p class="personality">
-              Feroz, solitario pero leal. Logan es un guerrero con un pasado misterioso y 
-              traumático. A pesar de su naturaleza salvaje y su lucha interna, es un protector 
-              incansable de los inocentes. Su experiencia de siglos lo ha convertido en un 
-              mentor invaluable para los X-Men.
+              Feroz, solitario pero leal. Logan es un guerrero con un pasado
+              misterioso y traumático. A pesar de su naturaleza salvaje y su
+              lucha interna, es un protector incansable de los inocentes. Su
+              experiencia de siglos lo ha convertido en un mentor invaluable
+              para los X-Men.
             </p>
           </div>
         </div>
@@ -414,18 +423,18 @@
         <!-- Storm -->
         <div class="hero-card" data-team="x-men" data-name="Storm">
           <div class="hero-image">
-            <img src="img/heroes/storm.jpg" alt="Storm">
+            <img src="img/heroes/storm.jpg" alt="Storm" />
             <span class="team-badge">X-MEN</span>
           </div>
           <div class="hero-content">
             <h2 class="hero-name">STORM</h2>
-            
+
             <h3 class="section-title">Características Físicas</h3>
             <div class="hero-info">
-              <strong>Nombre:</strong> Ororo Munroe<br>
-              <strong>Altura:</strong> 1.80 m<br>
-              <strong>Peso:</strong> 57 kg<br>
-              <strong>Ojos:</strong> Azules<br>
+              <strong>Nombre:</strong> Ororo Munroe<br />
+              <strong>Altura:</strong> 1.80 m<br />
+              <strong>Peso:</strong> 57 kg<br />
+              <strong>Ojos:</strong> Azules<br />
               <strong>Cabello:</strong> Blanco
             </div>
 
@@ -440,10 +449,11 @@
 
             <h3 class="section-title">Personalidad</h3>
             <p class="personality">
-              Serena, sabia y poderosa como una diosa. Ororo Munroe es una líder natural con 
-              un profundo respeto por la vida y la naturaleza. Su conexión con los elementos 
-              es absoluta, y usa sus poderes con responsabilidad. Es tanto una guerrera feroz 
-              como una pacificadora compasiva.
+              Serena, sabia y poderosa como una diosa. Ororo Munroe es una líder
+              natural con un profundo respeto por la vida y la naturaleza. Su
+              conexión con los elementos es absoluta, y usa sus poderes con
+              responsabilidad. Es tanto una guerrera feroz como una pacificadora
+              compasiva.
             </p>
           </div>
         </div>
@@ -451,18 +461,18 @@
         <!-- Cyclops -->
         <div class="hero-card" data-team="x-men" data-name="Cyclops">
           <div class="hero-image">
-            <img src="img/heroes/cyclops.jpg" alt="Cyclops">
+            <img src="img/heroes/cyclops.jpg" alt="Cyclops" />
             <span class="team-badge">X-MEN</span>
           </div>
           <div class="hero-content">
             <h2 class="hero-name">CYCLOPS</h2>
-            
+
             <h3 class="section-title">Características Físicas</h3>
             <div class="hero-info">
-              <strong>Nombre:</strong> Scott Summers<br>
-              <strong>Altura:</strong> 1.91 m<br>
-              <strong>Peso:</strong> 88 kg<br>
-              <strong>Ojos:</strong> Marrones (Rayos Ópticos Rojos)<br>
+              <strong>Nombre:</strong> Scott Summers<br />
+              <strong>Altura:</strong> 1.91 m<br />
+              <strong>Peso:</strong> 88 kg<br />
+              <strong>Ojos:</strong> Marrones (Rayos Ópticos Rojos)<br />
               <strong>Cabello:</strong> Castaño
             </div>
 
@@ -477,32 +487,33 @@
 
             <h3 class="section-title">Personalidad</h3>
             <p class="personality">
-              Líder dedicado y estratega nato. Scott Summers lleva el peso del liderazgo de 
-              los X-Men con seriedad y determinación. Aunque su control constante sobre sus 
-              poderes lo hace parecer distante, es profundamente leal y está dispuesto a tomar 
-              las decisiones difíciles que nadie más quiere tomar.
+              Líder dedicado y estratega nato. Scott Summers lleva el peso del
+              liderazgo de los X-Men con seriedad y determinación. Aunque su
+              control constante sobre sus poderes lo hace parecer distante, es
+              profundamente leal y está dispuesto a tomar las decisiones
+              difíciles que nadie más quiere tomar.
             </p>
           </div>
         </div>
 
         <!-- Sección Guardians -->
-        <div id="guardians" style="grid-column: 1 / -1; height: 1px;"></div>
+        <div id="guardians" style="grid-column: 1 / -1; height: 1px"></div>
 
         <!-- Star-Lord -->
         <div class="hero-card" data-team="guardians" data-name="Star-Lord">
           <div class="hero-image">
-            <img src="img/heroes/starlord.jpg" alt="Star-Lord">
+            <img src="img/heroes/starlord.jpg" alt="Star-Lord" />
             <span class="team-badge">GUARDIANS</span>
           </div>
           <div class="hero-content">
             <h2 class="hero-name">STAR-LORD</h2>
-            
+
             <h3 class="section-title">Características Físicas</h3>
             <div class="hero-info">
-              <strong>Nombre:</strong> Peter Quill<br>
-              <strong>Altura:</strong> 1.88 m<br>
-              <strong>Peso:</strong> 79 kg<br>
-              <strong>Ojos:</strong> Azules<br>
+              <strong>Nombre:</strong> Peter Quill<br />
+              <strong>Altura:</strong> 1.88 m<br />
+              <strong>Peso:</strong> 79 kg<br />
+              <strong>Ojos:</strong> Azules<br />
               <strong>Cabello:</strong> Rubio
             </div>
 
@@ -517,10 +528,11 @@
 
             <h3 class="section-title">Personalidad</h3>
             <p class="personality">
-              Carismático, sarcástico y adicto a la música de los 80. Peter Quill es un 
-              aventurero espacial con un gran corazón bajo su actitud despreocupada. Líder 
-              de los Guardianes de la Galaxia, combina humor con valentía y une al equipo 
-              más improbable del universo.
+              Carismático, sarcástico y adicto a la música de los 80. Peter
+              Quill es un aventurero espacial con un gran corazón bajo su
+              actitud despreocupada. Líder de los Guardianes de la Galaxia,
+              combina humor con valentía y une al equipo más improbable del
+              universo.
             </p>
           </div>
         </div>
@@ -536,5 +548,85 @@
     <script src="js/filters.js"></script>
     <script src="js/search.js"></script>
     <script src="js/scroll-animations.js"></script>
+    <script type="module">
+      import { fetchHeroes } from "./js/api.js";
+      const heroGrid = document.getElementById("heroGrid");
+      const noResults = document.querySelector(".no-results");
+      const resultsCount = document.getElementById("resultsCount");
+
+      // Función para actualizar contador de resultados
+      function updateResultsCount() {
+        const visibleCards = document.querySelectorAll(
+          ".hero-card:not(.hidden)"
+        ).length;
+        resultsCount.textContent = visibleCards;
+      }
+
+      // Inicializar contador con tarjetas estáticas
+      updateResultsCount();
+
+      async function renderHeroes() {
+        try {
+          const heroes = await fetchHeroes();
+
+          if (!heroes.length) {
+            // Si no hay datos dinámicos, mantener las tarjetas estáticas
+            updateResultsCount();
+            return;
+          }
+
+          // Agregar héroes dinámicos adicionales
+          for (const hero of heroes) {
+            // Verificar si el héroe ya existe (para evitar duplicados)
+            const existingCard = document.querySelector(
+              `[data-name="${hero.name}"]`
+            );
+            if (existingCard) continue;
+
+            const card = document.createElement("div");
+            card.className = "hero-card";
+            card.setAttribute("data-team", hero.team || "");
+            card.setAttribute("data-name", hero.name || "");
+            card.innerHTML = `
+              <div class="hero-image">
+                <img src="img/heroes/${hero.image || "default.jpg"}" alt="${
+              hero.name
+            }">
+                <span class="team-badge">${hero.team || ""}</span>
+              </div>
+              <div class="hero-content">
+                <h2 class="hero-name">${hero.name}</h2>
+                <h3 class="section-title">Características Físicas</h3>
+                <div class="hero-info">
+                  <strong>Nombre:</strong> ${hero.realName || ""}<br>
+                  <strong>Altura:</strong> ${hero.height || ""}<br>
+                  <strong>Peso:</strong> ${hero.weight || ""}<br>
+                  <strong>Ojos:</strong> ${hero.eyes || ""}<br>
+                  <strong>Cabello:</strong> ${hero.hair || ""}
+                </div>
+                <h3 class="section-title">Poderes y Habilidades</h3>
+                <div class="powers-list">
+                  ${(hero.powers || [])
+                    .map((p) => `<span class="power-tag">${p}</span>`)
+                    .join(" ")}
+                </div>
+                <h3 class="section-title">Personalidad</h3>
+                <p class="personality">${hero.personality || ""}</p>
+              </div>
+            `;
+            heroGrid.appendChild(card);
+          }
+
+          noResults.style.display = "none";
+          updateResultsCount();
+        } catch (err) {
+          console.error("Error al cargar héroes dinámicos:", err);
+          // Mantener las tarjetas estáticas si hay error
+          updateResultsCount();
+        }
+      }
+
+      renderHeroes();
+    </script>
   </body>
 </html>

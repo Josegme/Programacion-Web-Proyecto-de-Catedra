@@ -37,6 +37,8 @@
         <li><a href="historias.html">📖 HISTORIAS</a></li>
         <li><a href="comparador.html">⚔️ COMPARADOR</a></li>
         <li><a href="galeria.html">🖼️ GALERÍA</a></li>
+        <li><a href="hero-register.html">✍️ Registro de Superheroes</a></li>
+        <li><a href="fan-register.html">📝 Registro como Fan</a></li>
         <li><a href="quiz.html">🎮 QUIZ</a></li>
       </ul>
     </nav>
@@ -150,6 +152,33 @@
       </div>
 
       <!-- Footer -->
+      <!-- Subscription Section -->
+      <section class="subscribe-section" aria-labelledby="subscribeTitle">
+        <h3 id="subscribeTitle">Suscríbete para novedades</h3>
+        <p class="subscribe-desc">
+          Recibe noticias y actualizaciones sobre héroes y películas.
+        </p>
+        <form
+          id="subscribeForm"
+          class="subscribe-form"
+          aria-label="Formulario de suscripción"
+        >
+          <label for="subscribeEmail" class="visually-hidden"
+            >Correo electrónico</label
+          >
+          <input
+            id="subscribeEmail"
+            name="email"
+            type="email"
+            placeholder="tu@correo.com"
+            required
+            aria-required="true"
+          />
+          <button id="subscribeBtn" type="submit">Suscribirme</button>
+          <div id="subscribeMessage" role="status" aria-live="polite"></div>
+        </form>
+      </section>
+
       <div
         style="
           text-align: center;
@@ -168,6 +197,7 @@
     </div>
 
     <script src="js/menu.js"></script>
+    <script src="js/subscribe.js"></script>
     <script>
       // Animaciones de entrada para las tarjetas
       const observerOptions = {

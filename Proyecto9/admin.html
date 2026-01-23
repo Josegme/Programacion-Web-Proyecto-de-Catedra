@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Panel Admin | Heroes Database</title>
+    <link rel="stylesheet" href="css/main.css" />
+    <link rel="stylesheet" href="css/heroes.css" />
+  </head>
+  <body>
+    <header>
+      <div class="logo">
+        <img src="img/logo.png" alt="Marvel Logo" />
+        <h1>ADMIN PANEL</h1>
+      </div>
+      <nav>
+        <a href="index.html">Inicio</a>
+        <a href="heroes.html">Héroes</a>
+        <a href="admin.html">Panel Admin</a>
+        <a href="#" id="logoutBtn">Logout</a>
+      </nav>
+    </header>
+    <main class="container">
+      <h2>Gestión de Héroes</h2>
+      <form id="heroForm" class="admin-form">
+        <input type="text" id="name" placeholder="Nombre del héroe" required />
+        <input type="text" id="realName" placeholder="Nombre real" />
+        <input type="text" id="team" placeholder="Equipo" />
+        <input type="text" id="height" placeholder="Altura" />
+        <input type="text" id="weight" placeholder="Peso" />
+        <input type="text" id="eyes" placeholder="Ojos" />
+        <input type="text" id="hair" placeholder="Cabello" />
+        <input
+          type="text"
+          id="image"
+          placeholder="Imagen (archivo en img/heroes/)"
+        />
+        <textarea id="personality" placeholder="Personalidad"></textarea>
+        <input
+          type="text"
+          id="powers"
+          placeholder="Poderes (separados por coma)"
+        />
+        <button type="submit">Crear héroe</button>
+        <div id="heroFormMsg"></div>
+      </form>
+      <h3>Lista de Héroes</h3>
+      <div id="adminHeroGrid"></div>
+      <h2>Suscriptores</h2>
+      <div id="subscribersList"></div>
+    </main>
+    <script type="module">
+      import {
+        fetchHeroes,
+        createHero,
+        deleteHero,
+        updateHero,
+        fetchSubscribers,
+        getMe,
+      } from "./js/api.js";
+      const token = sessionStorage.getItem("jwt");
+      if (!token) {
+        alert("No tienes acceso. Logueate como admin.");
+        window.location.href = "login.html";
+      }
+      // Verificar rol admin
+      getMe(token)
+        .then((res) => {
+          const { user } = res || {};
+          if (!user || user.role !== "admin") {
+            alert("Acceso solo para administradores.");
+            window.location.href = "index.html";
+          }
+        })
+        .catch(() => {
+          alert("Token inválido.");
+          window.location.href = "login.html";
+        });
+      // Renderizar héroes
+      const grid = document.getElementById("adminHeroGrid");
+      async function renderHeroes() {
+        const heroes = await fetchHeroes();
+        grid.innerHTML = "";
+        for (const hero of heroes) {
+          const card = document.createElement("div");
+          card.className = "hero-card";
+          card.innerHTML = `
+          <strong>${hero.nombre}</strong><br>
+          <button data-id="${hero._id}" class="deleteBtn">Borrar</button>
+        `;
+          grid.appendChild(card);
+        }
+        document.querySelectorAll(".deleteBtn").forEach((btn) => {
+          btn.onclick = async (e) => {
+            await deleteHero(btn.dataset.id, token);
+            renderHeroes();
+          };
+        });
+      }
+      renderHeroes();
+      // Crear héroe
+      document.getElementById("heroForm").onsubmit = async (e) => {
+        e.preventDefault();
+        const hero = {
+          nombre: document.getElementById("name").value,
+          descripcion: document.getElementById("personality").value,
+          poderes: document
+            .getElementById("powers")
+            .value.split(",")
+            .map((p) => p.trim())
+            .filter(Boolean),
+          imagen: document.getElementById("image").value,
+        };
+        try {
+          await createHero(hero, token);
+          document.getElementById("heroFormMsg").textContent = "Héroe creado.";
+          renderHeroes();
+        } catch {
+          document.getElementById("heroFormMsg").textContent =
+            "Error al crear héroe.";
+        }
+      };
+      // Suscriptores
+      async function renderSubscribers() {
+        try {
+          const subs = await fetchSubscribers(token);
+          const list = document.getElementById("subscribersList");
+          list.innerHTML =
+            "<ul>" + subs.map((s) => `<li>${s.email}</li>`).join("") + "</ul>";
+        } catch {
+          document.getElementById("subscribersList").textContent =
+            "Error al cargar suscriptores.";
+        }
+      }
+      renderSubscribers();
+      // Logout
+      document.getElementById("logoutBtn").onclick = () => {
+        sessionStorage.removeItem("jwt");
+        window.location.href = "login.html";
+      };
+    </script>
+  </body>
+</html>

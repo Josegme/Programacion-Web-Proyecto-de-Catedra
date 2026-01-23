@@ -8,14 +8,23 @@ const app = express();
 const PORT = process.env.PORT || 4000;
 
 app.use(cors());
-app.use(express.json());
+// aumentar límite para aceptar imágenes en base64 desde formularios
+app.use(express.json({ limit: "10mb" }));
+app.use(express.urlencoded({ extended: true, limit: "10mb" }));
 
 // Routes
 const authRoutes = require("./routes/auth");
 const heroesRoutes = require("./routes/heroes");
+const subscribersRoutes = require("./routes/subscribers");
+const fansRoutes = require("./routes/fans");
 
 app.use("/api/auth", authRoutes);
 app.use("/api/heroes", heroesRoutes);
+app.use("/api/subscribers", subscribersRoutes);
+app.use("/api/fans", fansRoutes);
+
+// Serve uploaded files
+app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
 // Simple health
 app.get("/api/health", (req, res) => res.json({ ok: true }));

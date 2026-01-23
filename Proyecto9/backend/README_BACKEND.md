@@ -17,7 +17,7 @@ npm install
 npm run seed
 ```
 
-4. Ejecutar servidor en modo desarrollo:
+Ejecutar servidor en modo desarrollo:
 
 ```bash
 npm run dev
@@ -30,3 +30,19 @@ Endpoints básicos:
 - `GET /api/auth/me` -> requires Authorization: Bearer <token>
 - `GET /api/heroes` -> lista pública
 - `POST /api/heroes` -> requiere admin
+
+Suscripciones:
+
+- `POST /api/subscribers` -> { email } (público)
+- `GET /api/subscribers` -> lista de suscriptores (requiere admin)
+
+Helper: run-all.ps1
+
+Si trabajas en Windows PowerShell puedes usar `run-all.ps1` para automatizar pasos comunes (copia `.env.example` a `.env`, `npm install`, `npm run seed` y `npm run dev`).
+
+Ejemplo (PowerShell):
+
+```powershell
+cd Proyecto9/backend
+.\run-all.ps1
+```
